@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'pg'
+gem 'active_model_serializers'
+gem 'ember-rails'
+gem 'ember-source'
 gem 'fog'
-gem 'unf'
-
-gem 'sass-rails'
-gem 'uglifier'
-gem 'therubyracer', platforms: :ruby
+gem 'foreman'
 gem 'jquery-rails'
+gem 'pg'
+gem 'sass-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier'
+gem 'unf'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -19,3 +22,4 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
 end
+
