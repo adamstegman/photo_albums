@@ -15,4 +15,7 @@
 /log/*.log
 /tmp
 
+# vim
 *.swp
+
+/.env
