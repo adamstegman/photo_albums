@@ -1,0 +1,50 @@
+@import "foundation/components/global";
+@import "foundation/components/grid";
+@import "foundation/components/type";
+
+.layout {
+  @include grid-row;
+}
+
+nav.main {
+  @include grid-column(12);
+  @media #{$medium-up} {
+    @include grid-column(4);
+  }
+  @media #{$large-up} {
+    @include grid-column(3);
+  }
+
+  ul, ol {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  a {
+    display: block;
+  }
+
+  .current {
+    @extend %inverted-link;
+  }
+}
+
+.content {
+  @include grid-column(12);
+  @media #{$medium-up} {
+    @include grid-column(8);
+  }
+  @media #{$large-up} {
+    @include grid-column(9);
+  }
+}
+
+%inverted-link {
+  background-color: $anchor-font-color;
+  color: darken($body-bg, 5%);
+
+  &:active, &:hover, &:focus {
+    color: $body-bg;
+  }
+}

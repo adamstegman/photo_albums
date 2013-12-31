@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery
+//= require foundation
 //= require handlebars
 //= require ember
 //= require ember-data
@@ -20,6 +20,10 @@
 //= require photo_albums
 
 // for more details see: http://emberjs.com/guides/application/
-PhotoAlbums = Ember.Application.create();
+window.PhotoAlbums = Ember.Application.create();
+// TODO: use the Rails app for persistence and seed the Inbox in #63052080 or #63052042
+PhotoAlbums.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 //= require_tree .
+
+$(function(){ $(document).foundation(); });

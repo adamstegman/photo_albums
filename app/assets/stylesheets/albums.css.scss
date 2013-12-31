@@ -1,0 +1,24 @@
+@import "foundation/components/block-grid";
+@import "foundation/components/thumbs";
+
+.album-content {
+  padding: 1.5rem;
+}
+
+.album-thumbnails {
+  @include block-grid(3);
+  @media #{$medium-up} {
+    @include block-grid(4);
+  }
+  @media #{$large-up} {
+    @include block-grid(6);
+  }
+
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+
+  & > li > a {
+    @include thumb;
+  }
+}
