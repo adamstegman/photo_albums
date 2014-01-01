@@ -1,3 +1,5 @@
+ruby '2.0.0'
+
 source 'https://rubygems.org'
 
 gem 'rails'
@@ -24,3 +26,6 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
