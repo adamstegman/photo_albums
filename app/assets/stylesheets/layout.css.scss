@@ -6,13 +6,18 @@
   min-height: 100vh;
 }
 
+nav.top {
+  h1 {
+    font-weight: 300;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
 #show-nav-main {
   @extend %hidden-text;
-  background: image-url('menu.svg') no-repeat center center;
-  display: inline-block;
-  width: 44px;
-  height: 44px;
-  position: absolute;
 }
 
 nav.main {
@@ -24,12 +29,6 @@ nav.main {
     margin-left: 0;
   }
 
-  h1 {
-    a {
-      border-bottom: none;
-    }
-  }
-
   .current {
     @extend %inverted-link;
   }
@@ -37,7 +36,6 @@ nav.main {
 
 .content {
   @include grid-row;
-  padding-left: 50px;
 }
 
 %hidden-text {
@@ -45,7 +43,11 @@ nav.main {
 }
 
 %inverted-link {
+  @extend %white-link;
   background-color: $anchor-font-color;
+}
+
+%white-link {
   color: darken($body-bg, 5%);
 
   &:active, &:hover, &:focus {
