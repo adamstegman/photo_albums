@@ -1,19 +1,30 @@
-<div class="layout">
-  <nav class="main">
-    <h1>
-      <a href="/">Photo Albums</a>
-    </h1>
-    <ul>
-      <li>
-        <h2>Albums</h2>
-        <ol>
-          <li>{{#link-to "albums.inbox" activeClass="current"}}Inbox{{/link-to}}</li>
-        </ol>
-      </li>
-    </ul>
-  </nav>
+<div class="layout off-canvas-wrap">
+  <div class="app-container inner-wrap">
+    <a id="show-nav-main" class="left-off-canvas-toggle">Menu</a>
+    <aside class="left-off-canvas-menu">
+      <nav class="main">
+        <ul class="off-canvas-list">
+          <li>
+            <label>
+              <h1>
+                <a href="/">Photo Albums</a>
+              </h1>
+            </label>
+          </li>
+          <li><label><h2>Albums</h2></label></li>
+          <li>
+            <ol>
+              <li>{{#link-to "albums.inbox" activeClass="current"}}Inbox{{/link-to}}</li>
+            </ol>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
-  <div class="content">
-    {{outlet}}
+    <div class="content">
+      {{outlet}}
+    </div>
+
+    <a class="exit-off-canvas"></a>
   </div>
 </div>

@@ -2,27 +2,32 @@
 @import "foundation/components/grid";
 @import "foundation/components/type";
 
-.layout {
-  @include grid-row;
+.app-container {
+  min-height: 100vh;
+}
+
+#show-nav-main {
+  @extend %hidden-text;
+  background: image-url('menu.svg') no-repeat center center;
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  position: absolute;
 }
 
 nav.main {
-  @include grid-column(12);
-  @media #{$medium-up} {
-    @include grid-column(4);
-  }
-  @media #{$large-up} {
-    @include grid-column(3);
+  label {
+    cursor: default;
   }
 
   ul, ol {
-    list-style-type: none;
     margin-left: 0;
-    padding-left: 0;
   }
 
-  a {
-    display: block;
+  h1 {
+    a {
+      border-bottom: none;
+    }
   }
 
   .current {
@@ -31,13 +36,12 @@ nav.main {
 }
 
 .content {
-  @include grid-column(12);
-  @media #{$medium-up} {
-    @include grid-column(8);
-  }
-  @media #{$large-up} {
-    @include grid-column(9);
-  }
+  @include grid-row;
+  padding-left: 50px;
+}
+
+%hidden-text {
+  text-indent: -9999em;
 }
 
 %inverted-link {
