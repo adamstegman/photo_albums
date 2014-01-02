@@ -9,5 +9,9 @@ PhotoAlbums.AlbumsInboxRoute = Ember.Route.extend({
     return this.store.filter('album', function (album) {
       return album.get('name') == 'Inbox';
     });
+  },
+
+  renderTemplate: function () {
+    this.render('albums/show');
   }
 });
