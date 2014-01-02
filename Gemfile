@@ -24,6 +24,7 @@ end
 
 group :development, :test do
   gem 'dotenv-rails'
+  gem 'jazz_hands'
   gem 'rspec-rails'
 end
 

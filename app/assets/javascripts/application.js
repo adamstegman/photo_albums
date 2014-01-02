@@ -21,8 +21,6 @@
 
 // for more details see: http://emberjs.com/guides/application/
 window.PhotoAlbums = Ember.Application.create();
-// TODO: use the Rails app for persistence and seed the Inbox in #63052080 or #63052042
-PhotoAlbums.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 //= require_tree .
 

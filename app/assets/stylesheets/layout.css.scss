@@ -29,7 +29,7 @@ nav.main {
     margin-left: 0;
   }
 
-  .current {
+  .active {
     @extend %inverted-link;
   }
 }
