@@ -1,0 +1,4 @@
+<div class="photo-content">
+  {{#link-to "album" album}}Back to {{album.name}}{{/link-to}}
+  <img {{bind-attr src=dataURI}} {{bind-attr alt=filename}}/>
+</div>

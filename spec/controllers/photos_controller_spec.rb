@@ -26,4 +26,16 @@ describe PhotosController do
       expect(photos_attributes).to match_array(expected_photos_attributes)
     end
   end
+
+  describe 'GET show' do
+    let(:photo) { create :real_photo }
+
+    subject { get :show, id: photo, format: :json }
+
+    it "returns the photo attributes" do
+      attributes = JSON.parse(subject.body)
+      expected_photo_attributes = PhotoSerializer.new(photo).as_json.with_indifferent_access
+      expect(attributes).to eq(expected_photo_attributes)
+    end
+  end
 end

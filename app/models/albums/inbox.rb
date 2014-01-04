@@ -5,7 +5,7 @@ module Albums
     alias :read_attribute_for_serialization :send
 
     def id
-      NAME
+      NAME.downcase
     end
 
     def name

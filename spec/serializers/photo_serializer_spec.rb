@@ -14,7 +14,7 @@ describe PhotoSerializer do
     expect(subject).to eq(photo.filename)
   end
 
-  it "includes contentType" do
+  it "includes content_type" do
     expect(subject).to eq(photo.content_type)
   end
 

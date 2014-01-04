@@ -5,7 +5,7 @@
         <a id="show-nav-main" class="menu-icon left-off-canvas-toggle"><span>Menu</span></a>
       </section>
       <section class="middle tab-bar-section">
-        <h1><a href="/">Photo Albums</a></h1>
+        <h1>{{#link-to "index"}}Photo Albums{{/link-to}}</a></h1>
       </section>
     </nav>
     <aside class="left-off-canvas-menu">
@@ -14,7 +14,7 @@
           <li><label>Albums</label></li>
           <li>
             <ol>
-              <li>{{#link-to "inbox"}}Inbox{{/link-to}}</li>
+              <li>{{#link-to "album" "inbox"}}Inbox{{/link-to}}</li>
             </ol>
           </li>
         </ul>
