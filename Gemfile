@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'active_model_serializers'
+gem 'carrierwave'
 gem 'ember-rails'
 gem 'ember-source'
 gem 'fog'
@@ -11,6 +12,7 @@ gem 'foreman'
 gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'pg'
+gem 'rmagick'
 gem 'sass-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier'
@@ -23,7 +25,9 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'awesome_print'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
   gem 'jazz_hands'
   gem 'rspec-rails'
 end

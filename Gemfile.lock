@@ -37,6 +37,10 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     coderay (1.1.0)
     columnize (0.3.6)
     coolline (0.4.2)
@@ -68,6 +72,11 @@ GEM
     erubis (2.7.0)
     excon (0.31.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     fog (1.19.0)
       builder
       excon (~> 0.31.0)
@@ -175,6 +184,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rmagick (2.13.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -234,9 +244,12 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  awesome_print
+  carrierwave
   dotenv-rails
   ember-rails
   ember-source
+  factory_girl_rails
   fog
   foreman
   foundation-rails
@@ -245,6 +258,7 @@ DEPENDENCIES
   pg
   rails
   rails_12factor
+  rmagick
   rspec-rails
   sass-rails
   sdoc

@@ -11,5 +11,9 @@ module Albums
     def name
       NAME
     end
+
+    def photos
+      Photo.all
+    end
   end
 end

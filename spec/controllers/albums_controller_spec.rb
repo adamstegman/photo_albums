@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe AlbumsController do
   describe 'GET inbox' do
+    let(:album) { Albums::Inbox.new }
     let(:make_request) { get :inbox, format: :json }
 
-    it "includes the Inbox name" do
+    it "returns the inbox attributes" do
       attributes = JSON.parse(make_request.body)['album']
-      expect(attributes['name']).to eq('Inbox')
+      expect(attributes['id']).to eq(album.id)
+      expect(attributes['name']).to eq(album.name)
+      expect(attributes['photo_ids']).to eq(album.photos.map(&:id))
     end
   end
 end
