@@ -3,6 +3,10 @@ class Photo < ActiveRecord::Base
 
   before_save :set_metadata
 
+  def album
+    Albums::Inbox.new
+  end
+
   def to_base64
     Base64.encode64(content.read) if content.present?
   end
