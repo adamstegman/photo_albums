@@ -1,9 +1,9 @@
 <div class="album-content">
   <ol class="album-thumbnails">
-    {{#each photo in photos}}
+    {{#each photos}}
       <li>
-        {{#link-to "photo" photo}}
-          <img {{bind-attr src=photo.dataURI}} {{bind-attr alt=photo.filename}}/>
+        {{#link-to "photo" id}}
+          {{partial "photo_img"}}
         {{/link-to}}
       </li>
     {{/each}}
