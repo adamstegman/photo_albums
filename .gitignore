@@ -20,4 +20,5 @@
 
 /.env
 /.rspec
+/public/assets
 /public/egg_small.jpg
