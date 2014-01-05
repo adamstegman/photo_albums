@@ -5,7 +5,13 @@
         <a id="show-nav-main" class="menu-icon left-off-canvas-toggle"><span>Menu</span></a>
       </section>
       <section class="middle tab-bar-section">
-        <h1>{{#link-to "album" album}}{{album.name}}{{/link-to}}</a></h1>
+        <h1>
+          {{#if isAlbum}}
+          {{else}}
+            <i class="fa fa-chevron-left"></i>
+          {{/if}}
+          {{#link-to "album" album}}{{album.name}}{{/link-to}}
+        </h1>
       </section>
     </nav>
     <aside class="left-off-canvas-menu">

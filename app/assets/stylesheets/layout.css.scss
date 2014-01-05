@@ -14,6 +14,18 @@ nav.top {
   a {
     color: inherit;
   }
+
+  h1 {
+    padding: 0 15px;
+    position: relative;
+
+    i {
+      position: absolute;
+      line-height: inherit;
+      left: 0;
+      top: 2px;
+    }
+  }
 }
 
 #show-nav-main {
