@@ -16,14 +16,16 @@ nav.top {
   }
 
   h1 {
-    padding: 0 15px;
-    position: relative;
-
-    i {
-      position: absolute;
+    a {
       line-height: inherit;
-      left: 0;
-      top: 2px;
+      padding: 0 15px;
+      position: relative;
+
+      i {
+        position: absolute;
+        left: 0;
+        top: 4px;
+      }
     }
   }
 }

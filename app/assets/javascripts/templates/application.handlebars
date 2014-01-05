@@ -6,11 +6,13 @@
       </section>
       <section class="middle tab-bar-section">
         <h1>
-          {{#if isAlbum}}
-          {{else}}
-            <i class="fa fa-chevron-left"></i>
-          {{/if}}
-          {{#link-to "album" album}}{{album.name}}{{/link-to}}
+          {{#link-to "album" album}}
+            {{#if isAlbum}}
+            {{else}}
+              <i class="fa fa-chevron-left"></i>
+            {{/if}}
+            {{album.name}}
+          {{/link-to}}
         </h1>
       </section>
     </nav>
