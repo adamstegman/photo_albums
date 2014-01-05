@@ -2,7 +2,7 @@
   <ol class="album-thumbnails">
     {{#each photos}}
       <li>
-        {{#link-to "photo" id}}
+        {{#link-to "photo" this}}
           {{partial "photo_img"}}
         {{/link-to}}
       </li>
