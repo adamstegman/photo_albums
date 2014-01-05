@@ -17,6 +17,8 @@ module PhotoAlbums
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.cache_store = :dalli_store
+
     config.assets.precompile += %w(jquery.js foundation.js handlebars.js ember.js ember-data.js)
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
