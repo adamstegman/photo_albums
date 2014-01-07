@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'active_model_serializers'
 gem 'carrierwave'
-gem 'dalli'
 gem 'ember-rails'
 gem 'ember-source'
 gem 'fog'
@@ -19,9 +18,9 @@ gem 'pg'
 gem 'rack-cache'
 gem 'rmagick'
 gem 'sass-rails'
+gem 'thin'
 gem 'uglifier'
 gem 'unf'
-gem 'unicorn'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -37,5 +36,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'dalli'
   gem 'rails_12factor'
+  gem 'unicorn'
 end
