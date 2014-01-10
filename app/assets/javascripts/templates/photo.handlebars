@@ -1,3 +1,16 @@
-<div class="photo-content">
+<article class="photo-content">
   {{partial "photo_img"}}
+
+  <dl>
+    <dt>Filename</dt>
+    <dd>{{filename}}&nbsp;</dd>
+    <dt>Date</dt>
+    <dd>{{formatTakenAt takenAt}}&nbsp;</dd>
+    <dt>Location</dt>
+    <dd>
+      <a {{bind-attr href=locationURL}}>{{latitude}}, {{longitude}}&nbsp;</a>
+    </dd>
+    <dt>Description</dt>
+    <dd>{{comment}}&nbsp;</dd>
+  </dl>
 </div>

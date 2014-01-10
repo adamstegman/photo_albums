@@ -26,6 +26,22 @@ describe PhotoSerializer do
     expect(subject).to eq(photo.height)
   end
 
+  it "includes taken_at" do
+    expect(subject).to eq(photo.taken_at)
+  end
+
+  it "includes latitude" do
+    expect(subject).to eq(photo.latitude)
+  end
+
+  it "includes longitude" do
+    expect(subject).to eq(photo.longitude)
+  end
+
+  it "includes comment" do
+    expect(subject).to eq(photo.comment)
+  end
+
   it "includes content" do
     expect(subject).to eq(Base64.encode64(photo.content.read))
   end

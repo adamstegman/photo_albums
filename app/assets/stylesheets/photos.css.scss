@@ -1,0 +1,33 @@
+@import "foundation/components/grid";
+
+article {
+  dl {
+    @include grid-row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    dt {
+      @include grid-column(4);
+      @extend %photo-attribute-key;
+    }
+    dd {
+      @include grid-column(8);
+      @extend %photo-attribute-value;
+    }
+  }
+}
+
+%photo-attribute {
+  border-bottom: 1px solid $shiny-edge-active-color;
+  margin-bottom: 0;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+%photo-attribute-key {
+  @extend %photo-attribute;
+}
+
+%photo-attribute-value {
+  @extend %photo-attribute;
+}
