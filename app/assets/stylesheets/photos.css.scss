@@ -18,10 +18,14 @@ article {
 }
 
 %photo-attribute {
-  border-bottom: 1px solid $shiny-edge-active-color;
+  border-top: 1px solid $shiny-edge-active-color;
   margin-bottom: 0;
   padding-bottom: 3px;
   padding-top: 3px;
+
+  &:first-of-type {
+    border-top: none;
+  }
 }
 
 %photo-attribute-key {
