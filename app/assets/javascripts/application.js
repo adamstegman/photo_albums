@@ -19,4 +19,9 @@ window.PhotoAlbums = Ember.Application.create();
 
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function() {
+  var $doc = $(document);
+  if ($doc.foundation) {
+    $doc.foundation();
+  }
+});

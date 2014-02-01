@@ -13,8 +13,8 @@ describe PhotosController do
     it "returns the requested photo contents" do
       photos_attributes = JSON.parse(subject.body)['photos']
 
-      expected_photos_attributes = photos.map { |photo| PhotoSerializer.new(photo).as_json[:photo].with_indifferent_access }
-      expect(photos_attributes).to match_array(expected_photos_attributes)
+      expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
+      expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
     end
 
     it "does not return requested photos that do not exist" do
@@ -22,8 +22,8 @@ describe PhotosController do
 
       photos_attributes = JSON.parse(subject.body)['photos']
 
-      expected_photos_attributes = photos.map { |photo| PhotoSerializer.new(photo).as_json[:photo].with_indifferent_access }
-      expect(photos_attributes).to match_array(expected_photos_attributes)
+      expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
+      expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
     end
   end
 
@@ -33,9 +33,9 @@ describe PhotosController do
     subject { get :show, id: photo, format: :json }
 
     it "returns the photo attributes" do
-      attributes = JSON.parse(subject.body)
-      expected_photo_attributes = PhotoSerializer.new(photo).as_json.with_indifferent_access
-      expect(attributes).to eq(expected_photo_attributes)
+      attributes = JSON.parse(subject.body)['photo']
+      expected_photo_attributes = JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo]
+      expect(attributes).to match_hash(expected_photo_attributes).with_precision(5)
     end
   end
 end

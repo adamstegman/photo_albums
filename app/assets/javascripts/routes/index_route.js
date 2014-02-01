@@ -1,5 +1,5 @@
 PhotoAlbums.IndexRoute = Ember.Route.extend({
-  beforeModel: function () {
+  redirect: function () {
     this.transitionTo('album', 'inbox');
   }
 });

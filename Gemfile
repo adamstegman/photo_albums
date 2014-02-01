@@ -31,9 +31,13 @@ end
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'capybara'
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'jasmine'
   gem 'jazz_hands'
+  gem 'poltergeist'
   gem 'rspec-rails'
 end
 
