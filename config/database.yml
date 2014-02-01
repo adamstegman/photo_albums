@@ -4,15 +4,13 @@ development:
   database: photo_albums_development
   pool: 5
   username: photo_albums
-  password:
 
 test:
   adapter: postgresql
   encoding: unicode
   database: photo_albums_test
   pool: 5
-  username: photo_albums
-  password:
+  username: postgres
 
 production:
   adapter: postgresql
