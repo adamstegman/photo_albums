@@ -5,12 +5,12 @@ RSpec::Matchers.define :be_now do
 
   failure_message_for_should do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} would be now (#{Time.zone.now})"
+    "expected that #{actual} (#{actual.to_i}) would be now (#{Time.zone.now}, #{Time.zone.now.to_i})"
   end
 
   failure_message_for_should_not do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} would not be now (#{Time.zone.now})"
+    "expected that #{actual} (#{actual.to_i}) would not be now (#{Time.zone.now}, #{Time.zone.now.to_i})"
   end
 end
 
@@ -21,11 +21,11 @@ RSpec::Matchers.define :be_at do |expected|
 
   failure_message_for_should do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} would be #{expected}"
+    "expected that #{actual} (#{actual.to_i}) would be #{expected} (#{expected.to_i})"
   end
 
   failure_message_for_should_not do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} would not be #{expected}"
+    "expected that #{actual} (#{actual.to_i}) would not be #{expected} (#{expected.to_i})"
   end
 end
