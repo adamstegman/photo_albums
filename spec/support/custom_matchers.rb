@@ -21,11 +21,11 @@ RSpec::Matchers.define :be_at do |expected|
 
   failure_message_for_should do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} (#{actual.to_i}) would be #{expected} (#{expected.to_i})"
+    "expected that #{actual} (#{actual.to_i}) would be #{expected} (#{DateTime.parse(expected).to_i})"
   end
 
   failure_message_for_should_not do |actual|
     actual = 'nil' unless actual
-    "expected that #{actual} (#{actual.to_i}) would not be #{expected} (#{expected.to_i})"
+    "expected that #{actual} (#{actual.to_i}) would not be #{expected} (#{DateTime.parse(expected).to_i})"
   end
 end
