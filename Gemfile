@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'active_model_serializers'
+gem 'activesupport'
+gem 'addressable', require: 'addressable/template'
 gem 'carrierwave'
 gem 'ember-rails'
 gem 'ember-source'
@@ -37,8 +39,13 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'jasmine'
   gem 'jazz_hands'
+  gem 'multi_json'
   gem 'poltergeist'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :production do

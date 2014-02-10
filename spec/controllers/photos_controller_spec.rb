@@ -1,4 +1,5 @@
-require 'spec_helper'
+require 'controller_spec_helper'
+require 'app/controllers/photos_controller.rb'
 
 describe PhotosController do
   describe 'GET index' do

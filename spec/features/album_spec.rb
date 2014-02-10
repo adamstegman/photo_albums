@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'feature_spec_helper'
 
 feature 'A photo album', js: true do
   given!(:album) { double(:album, name: 'Inbox') }

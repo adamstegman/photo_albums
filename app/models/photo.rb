@@ -16,20 +16,13 @@ class Photo < ActiveRecord::Base
   private
 
   def set_metadata
-    if content.present?
-      self.filename = content.filename
-      self.content_type = content.file.content_type
-      if content_type == 'image/jpeg'
-        exif = EXIFR::JPEG.new(StringIO.new(content.read))
-        self.exif = exif.exif.try(:to_hash)
-        self.comment = exif.comment
-        self.taken_at = exif.date_time_original.try(:utc)
-        if exif.gps
-          self.latitude = exif.gps[:latitude]
-          self.longitude = exif.gps[:longitude]
-        end
-      end
-      self.taken_at = Time.zone.now unless taken_at
-    end
+    metadata = PhotoMetadata.new(content, logger: Rails.logger)
+    self.content_type = metadata.content_type
+    self.filename = metadata.filename
+    self.latitude = metadata.latitude
+    self.longitude = metadata.longitude
+    self.comment = metadata.comment
+    self.taken_at = metadata.taken_at
+    self.exif = metadata.exif_hash
   end
 end

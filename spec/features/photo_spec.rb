@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'feature_spec_helper'
 
 feature 'A photo', js: true do
   given!(:photo) { create :photo, :real }

@@ -1,4 +1,5 @@
-require 'spec_helper'
+require 'controller_spec_helper'
+require 'app/controllers/albums_controller'
 
 describe AlbumsController do
   describe 'GET inbox' do
