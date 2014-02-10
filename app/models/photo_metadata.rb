@@ -54,8 +54,10 @@ class PhotoMetadata
   end
 
   def exif
-    @exif ||= EXIFR::JPEG.new(StringIO.new(content.read)) if content
-  rescue ArgumentError
+    if content && (content_string = content.read)
+      @exif ||= EXIFR::JPEG.new(StringIO.new(content_string))
+    end
+  rescue ArgumentError, EXIFR::MalformedJPEG
   end
 
   def logger

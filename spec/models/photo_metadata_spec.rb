@@ -9,6 +9,38 @@ describe PhotoMetadata do
 
   subject { described_class.new(content, logger: Logger.new('/dev/null')) }
 
+  shared_examples_for "all EXIF-derived attributes are nil" do
+    describe '#latitude' do
+      it "is nil" do
+        expect(subject.latitude).to be_nil
+      end
+    end
+
+    describe '#longitude' do
+      it "is nil" do
+        expect(subject.longitude).to be_nil
+      end
+    end
+
+    describe '#comment' do
+      it "is nil" do
+        expect(subject.comment).to be_nil
+      end
+    end
+
+    describe '#taken_at' do
+      it "is nil" do
+        expect(subject.taken_at).to be_nil
+      end
+    end
+
+    describe '#exif_hash' do
+      it "is nil" do
+        expect(subject.exif_hash).to be_nil
+      end
+    end
+  end
+
   describe '#content_type' do
     context "when the content has a file" do
       before do
@@ -59,7 +91,7 @@ describe PhotoMetadata do
     end
 
     context "when the photo has EXIF data" do
-      let(:exif) { instance_double('EXIFR::JPEG') }
+      let(:exif) { double('EXIFR::JPEG') }
 
       before do
         allow(exifr_jpeg).to receive(:new).and_return(exif)
@@ -255,6 +287,8 @@ describe PhotoMetadata do
   context "when there is no content" do
     let(:content) { nil }
 
+    it_behaves_like "all EXIF-derived attributes are nil"
+
     describe '#content_type' do
       it "is nil" do
         expect(subject.content_type).to be_nil
@@ -266,35 +300,17 @@ describe PhotoMetadata do
         expect(subject.filename).to be_nil
       end
     end
+  end
 
-    describe '#latitude' do
-      it "is nil" do
-        expect(subject.latitude).to be_nil
-      end
+  context "when the content is not well-formed" do
+    let(:exifr_jpeg) { class_double('EXIFR::JPEG').as_stubbed_const }
+
+    before do
+      malformed_jpeg = Class.new(StandardError)
+      stub_const('EXIFR::MalformedJPEG', malformed_jpeg)
+      allow(exifr_jpeg).to receive(:new).and_raise(EXIFR::MalformedJPEG)
     end
 
-    describe '#longitude' do
-      it "is nil" do
-        expect(subject.longitude).to be_nil
-      end
-    end
-
-    describe '#comment' do
-      it "is nil" do
-        expect(subject.comment).to be_nil
-      end
-    end
-
-    describe '#taken_at' do
-      it "is nil" do
-        expect(subject.taken_at).to be_nil
-      end
-    end
-
-    describe '#exif_hash' do
-      it "is nil" do
-        expect(subject.exif_hash).to be_nil
-      end
-    end
+    it_behaves_like "all EXIF-derived attributes are nil"
   end
 end
