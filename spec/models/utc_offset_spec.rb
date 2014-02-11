@@ -13,6 +13,7 @@ describe UtcOffset do
       let(:gps) { {latitude: 39.6591333, longitude: -0.2372} }
 
       before do
+        allow(time).to receive(:to_i).and_return(1368582953)
         stub_request(:get, "https://maps.googleapis.com/maps/api/timezone/json").
           with(query: {location: "39.6591333,-0.2372", timestamp: 1368582953, sensor: "true"}).
           to_return(status: 200, body: MultiJson.dump(response_hash))
