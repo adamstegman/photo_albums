@@ -174,9 +174,12 @@ describe PhotoMetadata do
           end
 
           context "when there is an EXIF original date time" do
+            let!(:utc_offset_class) { class_double("UtcOffset").as_stubbed_const }
             let(:date_time_original) { Time.new(2013, 5, 14, 18, 55, 53) }
+
             before do
               allow(exif).to receive(:date_time_original).and_return(date_time_original)
+              stub_const("UtcOffset::DEFAULT_UTC_OFFSET", -6)
             end
 
             context "when there is a GPS location" do
@@ -185,8 +188,6 @@ describe PhotoMetadata do
               end
 
               context "and the GPS location is valid" do
-                let!(:utc_offset_class) { class_double("UtcOffset").as_stubbed_const }
-
                 before do
                   allow(utc_offset_class).to receive(:utc_offset_hours).with(date_time_original, :gps).and_return(2)
                 end
@@ -197,16 +198,14 @@ describe PhotoMetadata do
               end
 
               context "and the GPS location is not valid" do
-                let!(:utc_offset_class) { class_double("UtcOffset").as_stubbed_const }
-
                 before do
                   utc_offset_not_found = Class.new(StandardError)
                   stub_const("UtcOffset::UtcOffsetNotFoundError", utc_offset_not_found)
                   allow(utc_offset_class).to receive(:utc_offset_hours).with(date_time_original, :gps).and_raise(utc_offset_not_found)
                 end
 
-                it "is set to the original date time in Pacific time" do
-                  expect(subject.taken_at).to be_at("2013-05-15T01:55:53Z")
+                it "is set to the original date time in Central time" do
+                  expect(subject.taken_at).to be_at("2013-05-14T23:55:53Z")
                 end
               end
             end
@@ -216,8 +215,8 @@ describe PhotoMetadata do
                 allow(exif).to receive(:gps).and_return(nil)
               end
 
-              it "is set to the original date time in Pacific time" do
-                expect(subject.taken_at).to be_at("2013-05-15T01:55:53Z")
+              it "is set to the original date time in Central time" do
+                expect(subject.taken_at).to be_at("2013-05-14T23:55:53Z")
               end
             end
           end

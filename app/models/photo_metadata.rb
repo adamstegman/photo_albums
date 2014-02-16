@@ -1,6 +1,4 @@
 class PhotoMetadata
-  DEFAULT_UTC_OFFSET = -8
-
   attr_accessor :content
 
   def initialize(content, options = {})
@@ -35,7 +33,7 @@ class PhotoMetadata
         year, month, day = exif.gps_date_stamp.split(':').map(&:to_i)
         Time.new(year, month, day, hour, minute, second, 0)
       elsif exif.date_time_original
-        utc_offset = DEFAULT_UTC_OFFSET
+        utc_offset = UtcOffset::DEFAULT_UTC_OFFSET
         utc_offset += 1 if exif.date_time_original.dst?
         if exif.gps
           begin

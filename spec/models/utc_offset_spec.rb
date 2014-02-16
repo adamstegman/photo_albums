@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'addressable/template'
 require 'multi_json'
+require 'active_support/core_ext/date_time'
 require 'app/models/utc_offset'
 
 describe UtcOffset do
@@ -13,9 +14,8 @@ describe UtcOffset do
       let(:gps) { {latitude: 39.6591333, longitude: -0.2372} }
 
       before do
-        allow(time).to receive(:to_i).and_return(1368582953)
         stub_request(:get, "https://maps.googleapis.com/maps/api/timezone/json").
-          with(query: {location: "39.6591333,-0.2372", timestamp: 1368582953, sensor: "true"}).
+          with(query: {location: "39.6591333,-0.2372", timestamp: 1368557753, sensor: "true"}).
           to_return(status: 200, body: MultiJson.dump(response_hash))
       end
 
@@ -53,7 +53,7 @@ describe UtcOffset do
 
       before do
         stub_request(:get, "https://maps.googleapis.com/maps/api/timezone/json").
-          with(query: {location: ",", timestamp: 1368582953, sensor: "true"}).
+          with(query: {location: ",", timestamp: 1368557753, sensor: "true"}).
           to_return(status: 400, body: "Invalid request.")
       end
 
