@@ -179,7 +179,7 @@ describe PhotoMetadata do
 
             before do
               allow(exif).to receive(:date_time_original).and_return(date_time_original)
-              stub_const("UtcOffset::DEFAULT_UTC_OFFSET", -6)
+              stub_const("UtcOffset::DEFAULT_TIME_ZONE", ActiveSupport::TimeZone['America/Chicago'])
             end
 
             context "when there is a GPS location" do

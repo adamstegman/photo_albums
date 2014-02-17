@@ -15,7 +15,7 @@ describe UtcOffset do
 
       before do
         stub_request(:get, "https://maps.googleapis.com/maps/api/timezone/json").
-          with(query: {location: "39.6591333,-0.2372", timestamp: 1368557753, sensor: "true"}).
+          with(query: {location: "39.6591333,-0.2372", timestamp: 1368575753, sensor: "true"}).
           to_return(status: 200, body: MultiJson.dump(response_hash))
       end
 
@@ -53,7 +53,7 @@ describe UtcOffset do
 
       before do
         stub_request(:get, "https://maps.googleapis.com/maps/api/timezone/json").
-          with(query: {location: ",", timestamp: 1368557753, sensor: "true"}).
+          with(query: {location: ",", timestamp: 1368575753, sensor: "true"}).
           to_return(status: 400, body: "Invalid request.")
       end
 

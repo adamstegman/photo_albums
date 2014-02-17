@@ -1,5 +1,5 @@
 module UtcOffset
-  DEFAULT_UTC_OFFSET = -6
+  DEFAULT_TIME_ZONE = ActiveSupport::TimeZone['America/Chicago']
 
   UtcOffsetNotFoundError = Class.new(StandardError)
 
@@ -24,8 +24,8 @@ module UtcOffset
     TIME_ZONE_URL_TEMPLATE.expand(params)
   end
 
-  def self.timestamp(time, utc_offset = DEFAULT_UTC_OFFSET)
+  def self.timestamp(time, time_zone = DEFAULT_TIME_ZONE)
     # assume a timezone to figure the timestamp
-    time.to_datetime.change(offset: utc_offset).to_i
+    time_zone.local_to_utc(time).to_i
   end
 end

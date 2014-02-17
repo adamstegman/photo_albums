@@ -66,8 +66,6 @@ class PhotoMetadata
   end
 
   def default_localized_date_time_original_in_utc
-    time = exif.date_time_original.to_datetime.change(offset: sprintf("%+03d00", UtcOffset::DEFAULT_UTC_OFFSET))
-    time = time.change(offset: sprintf("%+03d00", UtcOffset::DEFAULT_UTC_OFFSET + 1)) if time.to_time.dst?
-    time.utc
+    UtcOffset::DEFAULT_TIME_ZONE.local_to_utc(exif.date_time_original)
   end
 end
