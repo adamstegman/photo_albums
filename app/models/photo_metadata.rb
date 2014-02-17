@@ -33,16 +33,7 @@ class PhotoMetadata
         year, month, day = exif.gps_date_stamp.split(':').map(&:to_i)
         Time.new(year, month, day, hour, minute, second, 0)
       elsif exif.date_time_original
-        utc_offset = UtcOffset::DEFAULT_UTC_OFFSET
-        utc_offset += 1 if exif.date_time_original.dst?
-        if exif.gps
-          begin
-            utc_offset = UtcOffset.utc_offset_hours(exif.date_time_original, exif.gps)
-          rescue UtcOffset::UtcOffsetNotFoundError => e
-            logger.info { "#{self.class.name}#taken_at: #{exif.date_time_original.inspect} at #{exif.gps.inspect} UTC offset not found" }
-          end
-        end
-        exif.date_time_original.to_datetime.change(offset: sprintf("%+03d00", utc_offset)).utc
+        time = localized_date_time_original_in_utc || default_localized_date_time_original_in_utc
       end
     end
   end
@@ -50,6 +41,8 @@ class PhotoMetadata
   def exif_hash
     exif && exif.exif.to_hash
   end
+
+  private
 
   def exif
     if content && (content_string = content.read)
@@ -60,5 +53,21 @@ class PhotoMetadata
 
   def logger
     @logger ||= Logger.new(STDERR)
+  end
+
+  def localized_date_time_original_in_utc
+    if exif.gps
+      utc_offset = UtcOffset.utc_offset_hours(exif.date_time_original, exif.gps)
+      exif.date_time_original.to_datetime.change(offset: sprintf("%+03d00", utc_offset)).utc
+    end
+  rescue UtcOffset::UtcOffsetNotFoundError => e
+    logger.info { "#{self.class.name}#taken_at: #{exif.date_time_original.inspect} at #{exif.gps.inspect} UTC offset not found" }
+    nil
+  end
+
+  def default_localized_date_time_original_in_utc
+    time = exif.date_time_original.to_datetime.change(offset: sprintf("%+03d00", UtcOffset::DEFAULT_UTC_OFFSET))
+    time = time.change(offset: sprintf("%+03d00", UtcOffset::DEFAULT_UTC_OFFSET + 1)) if time.to_time.dst?
+    time.utc
   end
 end
