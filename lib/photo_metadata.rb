@@ -57,15 +57,15 @@ class PhotoMetadata
 
   def localized_date_time_original_in_utc
     if exif.gps
-      utc_offset = UtcOffset.utc_offset_hours(exif.date_time_original, exif.gps)
-      exif.date_time_original.to_datetime.change(offset: sprintf("%+03d00", utc_offset)).utc
+      time_zone = TimeZones.time_zone_for_location(exif.gps)
+      time_zone.local_to_utc(exif.date_time_original)
     end
-  rescue UtcOffset::UtcOffsetNotFoundError => e
-    logger.info { "#{self.class.name}#taken_at: #{exif.date_time_original.inspect} at #{exif.gps.inspect} UTC offset not found" }
+  rescue TimeZones::TimeZoneNotFoundError => e
+    logger.info { "#{self.class.name}#taken_at: #{exif.date_time_original.inspect} at #{exif.gps.inspect} time zone not found" }
     nil
   end
 
   def default_localized_date_time_original_in_utc
-    UtcOffset::DEFAULT_TIME_ZONE.local_to_utc(exif.date_time_original)
+    TimeZones::DEFAULT_TIME_ZONE.local_to_utc(exif.date_time_original)
   end
 end

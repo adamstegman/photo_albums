@@ -1,7 +1,8 @@
 require 'spec_helper'
 require 'logger'
 require 'active_support/core_ext/date_time'
-require 'app/models/photo_metadata'
+require 'exifr'
+require 'photo_metadata'
 
 describe PhotoMetadata do
   let!(:exifr_jpeg) { class_double('EXIFR::JPEG').as_stubbed_const }
@@ -174,12 +175,12 @@ describe PhotoMetadata do
           end
 
           context "when there is an EXIF original date time" do
-            let!(:utc_offset_class) { class_double("UtcOffset").as_stubbed_const }
             let(:date_time_original) { Time.new(2013, 5, 14, 18, 55, 53) }
 
             before do
               allow(exif).to receive(:date_time_original).and_return(date_time_original)
-              stub_const("UtcOffset::DEFAULT_TIME_ZONE", ActiveSupport::TimeZone['America/Chicago'])
+              class_double("TimeZones").as_stubbed_const
+              stub_const("TimeZones::DEFAULT_TIME_ZONE", ActiveSupport::TimeZone['America/Chicago'])
             end
 
             context "when there is a GPS location" do
@@ -189,7 +190,7 @@ describe PhotoMetadata do
 
               context "and the GPS location is valid" do
                 before do
-                  allow(utc_offset_class).to receive(:utc_offset_hours).with(date_time_original, :gps).and_return(2)
+                  allow(TimeZones).to receive(:time_zone_for_location).with(:gps).and_return(ActiveSupport::TimeZone['Europe/Madrid'])
                 end
 
                 it "is set to the original date time in the time zone of the location" do
@@ -199,9 +200,8 @@ describe PhotoMetadata do
 
               context "and the GPS location is not valid" do
                 before do
-                  utc_offset_not_found = Class.new(StandardError)
-                  stub_const("UtcOffset::UtcOffsetNotFoundError", utc_offset_not_found)
-                  allow(utc_offset_class).to receive(:utc_offset_hours).with(date_time_original, :gps).and_raise(utc_offset_not_found)
+                  stub_const("TimeZones::TimeZoneNotFoundError", Class.new(StandardError))
+                  allow(TimeZones).to receive(:time_zone_for_location).with(:gps).and_raise(TimeZones::TimeZoneNotFoundError)
                 end
 
                 it "is set to the original date time in Central time" do
