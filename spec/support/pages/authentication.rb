@@ -1,9 +1,14 @@
 module Pages
   class Authentication
+    extend Capybara::DSL
     include Capybara::DSL
 
-    def authenticate(username, password)
+    def self.authenticate(username, password)
       visit '/#/login'
+      new.authenticate(username, password)
+    end
+
+    def authenticate(username, password)
       fill_in "Username", with: username
       fill_in "Password", with: password
       click_on "Log in"
@@ -11,8 +16,4 @@ module Pages
       sleep 1
     end
   end
-end
-
-def authentication_page
-  @authentication_page ||= Pages::Authentication.new
 end

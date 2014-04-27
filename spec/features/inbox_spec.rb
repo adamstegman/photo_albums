@@ -8,12 +8,12 @@ feature 'The Inbox album', js: true do
 
   context "when authenticated" do
     before do
-      authentication_page.authenticate(user.email, 'abc')
+      Pages::Authentication.authenticate(user.email, 'abc')
     end
 
     scenario 'is shown at the root path' do
       visit '/'
-      expect(navigation_page).to have_active_item('Inbox')
+      expect(Pages::Navigation.new).to have_active_item('Inbox')
     end
 
     scenario 'has photos not in another album' do

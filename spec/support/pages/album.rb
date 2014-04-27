@@ -24,7 +24,7 @@ module Pages
 
     def self.open(album_name)
       visit '/'
-      navigation_page.navigate_to album_name
+      Pages::Navigation.new.navigate_to album_name
       new
     end
 

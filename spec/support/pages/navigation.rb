@@ -22,7 +22,3 @@ module Pages
     end
   end
 end
-
-def navigation_page
-  @navigation_page ||= Pages::Navigation.new
-end

@@ -10,12 +10,12 @@ feature 'A photo album', js: true do
 
   context "when authenticated" do
     before do
-      authentication_page.authenticate(user.email, 'abc')
+      Pages::Authentication.authenticate(user.email, 'abc')
     end
 
     scenario 'is active in the navigation menu' do
       subject
-      expect(navigation_page).to have_active_item(album.name)
+      expect(Pages::Navigation.new).to have_active_item(album.name)
     end
 
     scenario 'displays its photos' do

@@ -37,6 +37,10 @@ module Pages
       new
     end
 
+    def self.path_for(photo_id)
+      "/#/photos/#{photo_id}"
+    end
+
     private
 
     def element
@@ -47,8 +51,4 @@ module Pages
       @page_attributes ||= element.find('dl')
     end
   end
-end
-
-def photo_page
-  @photo_page ||= Pages::Photo.new
 end

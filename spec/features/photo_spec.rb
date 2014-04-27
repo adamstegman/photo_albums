@@ -8,7 +8,7 @@ feature 'A photo', js: true do
 
   context "when authenticated" do
     before do
-      authentication_page.authenticate(user.email, 'abc')
+      Pages::Authentication.authenticate(user.email, 'abc')
     end
 
     scenario 'is displayed' do
@@ -31,12 +31,12 @@ feature 'A photo', js: true do
 
   context "when not authenticated" do
     scenario "is not available" do
-      visit "/#/photos/#{photo.id}"
+      visit Pages::Photo.path_for(photo.id)
       expect(Pages::Photo.new).not_to be_present
     end
 
     scenario "is displayed after logging in" do
-      visit "/#/photos/#{photo_id}"
+      visit Pages::Photo.path_for(photo.id)
       # FIXME: the page is sometimes empty at this point, even after sleeping. Why?
       Pages::Authentication.new.authenticate(user.email, 'abc')
       expect(Pages::Photo.new).to be_photo(photo)
