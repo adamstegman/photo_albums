@@ -7,14 +7,25 @@ module Pages
       photos == expected_photos
     end
 
+    def present?
+      !!element
+    rescue Capybara::ElementNotFound
+      false
+    end
+
     def photos
       photo_ids = photo_elements.map(&method(:photo_id_from_element))
       ::Photo.where(id: photo_ids)
     end
 
+    def open_photo(photo_id)
+      element.find("#photo-#{photo_id} a").click
+    end
+
     def self.open(album_name)
       visit '/'
       navigation_page.navigate_to album_name
+      new
     end
 
     private
@@ -30,11 +41,7 @@ module Pages
     end
 
     def element
-      @element ||= page.find('.album-content')
+      page.find('.album-content')
     end
   end
-end
-
-def album_page
-  @album_page ||= Pages::Album.new
 end

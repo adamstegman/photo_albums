@@ -8,6 +8,7 @@ require 'capybara/rspec'
 
 WebMock.disable_net_connect!(:allow_localhost => true)
 
+Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 
 Dir[File.expand_path('../support/pages/*.rb', __FILE__)].each { |f| require f }

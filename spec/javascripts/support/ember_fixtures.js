@@ -8,6 +8,7 @@ PhotoAlbums.Album.FIXTURES = [{
 
 PhotoAlbums.Photo.FIXTURES = [{
   id: 1,
+  album: "inbox",
   filename: "IMG_2598.jpg",
   contentType: "image/jpeg",
   width: 3264,

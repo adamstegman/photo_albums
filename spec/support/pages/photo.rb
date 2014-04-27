@@ -8,6 +8,12 @@ module Pages
       img[:src].include?(photo.to_base64)
     end
 
+    def present?
+      !!element
+    rescue Capybara::ElementNotFound
+      false
+    end
+
     def has_filename_of_photo?(photo)
       page_attributes.has_content?(photo.filename)
     end
@@ -26,16 +32,15 @@ module Pages
     end
 
     def self.open(photo_id)
-      visit('/')
       # FIXME: photo.album.name
-      navigation_page.navigate_to 'Inbox'
-      album_page.find("#photo-#{photo_id} a").click
+      Pages::Album.open('Inbox').open_photo(photo_id)
+      new
     end
 
     private
 
     def element
-      @element ||= page.find('.photo-content')
+      page.find('.photo-content')
     end
 
     def page_attributes

@@ -5,15 +5,7 @@ describe('PhotoAlbums.PhotoController', function() {
     PhotoAlbums.reset();
 
     controller = testHelper.lookup('controller', 'photo');
-    model = modelHelper.fake('photo');
-    controller.set('model', model);
-
-    var attributes = modelHelper.attributesFor('photo');
-    for (var attribute in attributes) {
-      if (attributes.hasOwnProperty(attribute)) {
-        controller.set('model.' + attribute, attributes[attribute]);
-      }
-    }
+    model = controllerHelper.setModel(controller, 'photo');
   });
 
   describe('#dataURI', function() {

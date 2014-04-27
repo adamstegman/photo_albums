@@ -1,5 +1,5 @@
 require 'controller_spec_helper'
-require 'app/controllers/photos_controller.rb'
+require 'app/controllers/photos_controller'
 
 describe PhotosController do
   describe 'GET index' do
@@ -11,20 +11,26 @@ describe PhotosController do
       create :photo # un-requested photo
     end
 
-    it "returns the requested photo contents" do
-      photos_attributes = JSON.parse(subject.body)['photos']
+    it_behaves_like "an authenticated controller action"
 
-      expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
-      expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
-    end
+    context "when authenticated" do
+      include_context "when the request is authorized for a user"
 
-    it "does not return requested photos that do not exist" do
-      photo_ids.push(99999)
+      it "returns the requested photo contents" do
+        photos_attributes = JSON.parse(subject.body)['photos']
 
-      photos_attributes = JSON.parse(subject.body)['photos']
+        expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
+        expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
+      end
 
-      expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
-      expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
+      it "does not return requested photos that do not exist" do
+        photo_ids.push(99999)
+
+        photos_attributes = JSON.parse(subject.body)['photos']
+
+        expected_photos_attributes = photos.map { |photo| JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo] }
+        expect(photos_attributes).to match_array_of_hashes(expected_photos_attributes).with_precision(5)
+      end
     end
   end
 
@@ -33,10 +39,16 @@ describe PhotosController do
 
     subject { get :show, id: photo, format: :json }
 
-    it "returns the photo attributes" do
-      attributes = JSON.parse(subject.body)['photo']
-      expected_photo_attributes = JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo]
-      expect(attributes).to match_hash(expected_photo_attributes).with_precision(5)
+    it_behaves_like "an authenticated controller action"
+
+    context "when authenticated" do
+      include_context "when the request is authorized for a user"
+
+      it "returns the photo attributes" do
+        attributes = JSON.parse(subject.body)['photo']
+        expected_photo_attributes = JSON.parse(PhotoSerializer.new(photo).to_json).with_indifferent_access[:photo]
+        expect(attributes).to match_hash(expected_photo_attributes).with_precision(5)
+      end
     end
   end
 end

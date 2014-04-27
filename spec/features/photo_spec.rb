@@ -2,24 +2,44 @@ require 'feature_spec_helper'
 
 feature 'A photo', js: true do
   given!(:photo) { create :photo, :real }
+  given!(:user) { create :user, password: 'abc' }
 
-  before do
-    Pages::Photo.open(photo.id)
+  subject(:photo_page) { Pages::Photo.open(photo.id) }
+
+  context "when authenticated" do
+    before do
+      authentication_page.authenticate(user.email, 'abc')
+    end
+
+    scenario 'is displayed' do
+      expect(photo_page).to be_photo(photo)
+    end
+
+    scenario 'displays its attributes' do
+      expect(photo_page).to have_filename_of_photo(photo)
+      expect(photo_page).to have_comment_of_photo(photo)
+      expect(photo_page).to have_location_of_photo(photo)
+      expect(photo_page).to have_taken_at_date_of_photo(photo)
+    end
+
+    scenario 'is labeled with its album' do
+      subject
+      # FIXME: photo.album.name
+      expect(Pages::Title.new).to be_titled('Inbox')
+    end
   end
 
-  scenario 'is displayed' do
-    expect(photo_page).to be_photo(photo)
-  end
+  context "when not authenticated" do
+    scenario "is not available" do
+      visit "/#/photos/#{photo.id}"
+      expect(Pages::Photo.new).not_to be_present
+    end
 
-  scenario 'displays its attributes' do
-    expect(photo_page).to have_filename_of_photo(photo)
-    expect(photo_page).to have_comment_of_photo(photo)
-    expect(photo_page).to have_location_of_photo(photo)
-    expect(photo_page).to have_taken_at_date_of_photo(photo)
-  end
-
-  scenario 'is labeled with its album' do
-    # FIXME: photo.album.name
-    expect(title_page).to be_titled('Inbox')
+    scenario "is displayed after logging in" do
+      visit "/#/photos/#{photo_id}"
+      # FIXME: the page is sometimes empty at this point, even after sleeping. Why?
+      Pages::Authentication.new.authenticate(user.email, 'abc')
+      expect(Pages::Photo.new).to be_photo(photo)
+    end
   end
 end

@@ -7,13 +7,18 @@ module Pages
     end
 
     def navigate_to(name)
-      element.find('a', text: name).click unless has_active_item?(name)
+      unless has_active_item?(name)
+        page.find('#show-nav-main').click
+        element.find('a', text: name).click
+        # TODO: wait for navigation to finish
+        sleep 1
+      end
     end
 
     private
 
     def element
-      @element ||= page.find('nav.main')
+      page.find('nav.main')
     end
   end
 end

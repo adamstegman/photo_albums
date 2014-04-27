@@ -1,4 +1,4 @@
-PhotoAlbums.AlbumRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
+PhotoAlbums.LoginRoute = Ember.Route.extend({
   setupController: function(controller, model) {
     this._super(controller, model);
     this.setApplicationContext(controller);
@@ -7,8 +7,8 @@ PhotoAlbums.AlbumRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteM
   setApplicationContext: function(controller) {
     var applicationController = this.controllerFor('application');
     Ember.run(function() {
-      applicationController.set('album', controller);
-      applicationController.set('title', controller.get('name'));
+      applicationController.set('album', undefined);
+      applicationController.set('title', 'Login');
       applicationController.set('parentTitle', undefined);
     });
   }

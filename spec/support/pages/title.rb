@@ -9,11 +9,7 @@ module Pages
     private
 
     def element
-      @element ||= page.find('nav.top')
+      page.find('nav.top')
     end
   end
-end
-
-def title_page
-  @title_page ||= Pages::Title.new
 end
