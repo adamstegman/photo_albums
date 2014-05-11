@@ -40,9 +40,10 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'jasmine'
-  gem 'jazz_hands'
   gem 'multi_json'
   gem 'poltergeist'
+  gem 'pry'
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
 
