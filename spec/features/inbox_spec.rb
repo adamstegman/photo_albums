@@ -23,14 +23,11 @@ feature 'The Inbox album', js: true do
   end
 
   context "when not authenticated" do
-    scenario "is not available" do
-      visit '/'
-      expect(Pages::Album.new).not_to be_present
-    end
-
     scenario "is displayed after logging in" do
       visit '/'
-      Pages::Authentication.new.authenticate(user.email, 'abc')
+      expect(Pages::Album.new).not_to be_present
+      Pages::Authentication.authenticate(user.email, 'abc')
+      visit '/'
       expect(Pages::Album.new).to be_present
     end
   end

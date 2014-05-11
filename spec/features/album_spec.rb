@@ -27,14 +27,11 @@ feature 'A photo album', js: true do
   context "when not authenticated" do
     before { pending "Without an album URL to visit directly, this is not testable" }
 
-    scenario "is not available" do
-      # visit Pages::Album.path_for(album.id)
-      # expect(Pages::Album.new).not_to be_present
-    end
-
     scenario "is displayed after logging in" do
       # visit Pages::Album.path_for(album.id)
-      # Pages::Authentication.new.authenticate(user.email, 'abc')
+      # expect(Pages::Album.new).not_to be_present
+      # Pages::Authentication.authenticate(user.email, 'abc')
+      # visit Pages::Album.path_for(album.id)
       # expect(Pages::Album.new).to be_present
     end
   end
