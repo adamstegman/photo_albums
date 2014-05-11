@@ -2,7 +2,9 @@ require 'active_record_spec_helper'
 require 'app/serializers/album_serializer'
 
 describe AlbumSerializer do
-  let(:album) { Albums::Inbox.new }
+  let(:user) { create :user }
+  let!(:photo) { create :photo, user: user }
+  let(:album) { Albums::Inbox.new(user) }
   let(:album_hash) { described_class.new(album).as_json[:album] }
 
   it "includes id" do

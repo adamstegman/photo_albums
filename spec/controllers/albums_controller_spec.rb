@@ -2,8 +2,10 @@ require 'controller_spec_helper'
 require 'app/controllers/albums_controller'
 
 describe AlbumsController do
+  let(:user) { create :user, :authenticated }
+
   describe 'GET inbox' do
-    let(:album) { Albums::Inbox.new }
+    let(:album) { Albums::Inbox.new(user) }
     subject { get :inbox, format: :json }
 
     it_behaves_like "an authenticated controller action"

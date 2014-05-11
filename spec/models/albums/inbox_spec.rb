@@ -2,7 +2,8 @@ require 'active_record_spec_helper'
 require 'app/models/albums/inbox'
 
 describe Albums::Inbox do
-  let(:inbox) { described_class.new }
+  let(:user) { create :user }
+  let(:inbox) { described_class.new(user) }
 
   describe '#id' do
     subject { inbox.read_attribute_for_serialization(:id) }
@@ -24,8 +25,9 @@ describe Albums::Inbox do
     subject { inbox.read_attribute_for_serialization(:photos) }
 
     it "is all photos" do
+      create :photo, user: user
       create :photo
-      expect(subject).to eq(Photo.all)
+      expect(subject).to eq(Photo.for_user(user))
     end
   end
 end

@@ -1,8 +1,8 @@
 require 'feature_spec_helper'
 
 feature 'A photo', js: true do
-  given!(:photo) { create :photo, :real }
   given!(:user) { create :user, password: 'abc' }
+  given!(:photo) { create :photo, :real, user: user }
 
   subject(:photo_page) { Pages::Photo.open(photo.id) }
 

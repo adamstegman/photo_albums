@@ -6,10 +6,10 @@ class PhotosController < ApplicationController
   before_action :ensure_authorization
 
   def index
-    respond_with Photo.where(id: params[:ids])
+    respond_with Photo.for_user(current_user).where(id: params[:ids])
   end
 
   def show
-    respond_with Photo.find(params[:id])
+    respond_with Photo.for_user(current_user).find(params[:id])
   end
 end

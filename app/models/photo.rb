@@ -1,12 +1,16 @@
 class Photo < ActiveRecord::Base
   mount_uploader :content, PhotoUploader
 
+  belongs_to :user
+
   serialize :exif
 
   before_save :set_metadata
 
+  scope :for_user, -> (user) { where(user_id: user.id) }
+
   def album
-    Albums::Inbox.new
+    Albums::Inbox.new(nil)
   end
 
   def to_base64

@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :photo do
+    user
+
     factory :real_photo, traits: [:real]
   end
 

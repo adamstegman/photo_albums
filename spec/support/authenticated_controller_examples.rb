@@ -11,11 +11,9 @@ shared_examples_for "an authenticated controller action" do
   end
 
   context "when no user exists for the given authorization headers" do
-    before do
-      User.all.each(&:destroy)
-      request.headers['auth-email'] = 'a@b'
-      request.headers['auth-token'] = 'def'
-    end
+    include_context "when the request is authorized for a user"
+
+    before { User.destroy_all }
 
     it "returns 401 Unauthorized" do
       expect(subject.code).to eq("401")
@@ -32,8 +30,6 @@ shared_examples_for "an authenticated controller action" do
 end
 
 shared_context "when the request is authorized for a user" do
-  let(:user) { create :user, :authenticated }
-
   before do
     request.headers['auth-email'] = user.email
     request.headers['auth-token'] = user.token
