@@ -1,5 +1,5 @@
-//= require "ember-simple-auth"
-//= require "ember-simple-auth-devise"
+//= require "ember-simple-auth/ember-simple-auth"
+//= require "ember-simple-auth/ember-simple-auth-devise"
 
 Ember.Application.initializer({
   name: 'authentication',

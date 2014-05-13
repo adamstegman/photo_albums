@@ -1,1 +1,1 @@
-install imagemagick libxml2 libxslt phantomjs
+install imagemagick libxml2 libxslt node phantomjs

@@ -17,7 +17,17 @@ module PhotoAlbums
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.assets.precompile += %w(jquery.js foundation.js handlebars.js ember.js ember-data.js moment.js)
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+
+    config.assets.precompile += %w(
+      jquery/jquery.js
+      foundation/js/foundation.js
+      handlebars/handlebars.js
+      ember/ember.js
+      ember-data/ember-data.js
+      momentjs/moment.js
+      modernizr/modernizr.js
+    )
 
     config.autoload_paths += %W(#{config.root}/lib)
 

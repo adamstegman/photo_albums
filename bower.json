@@ -1,0 +1,32 @@
+{
+  "name": "PhotoAlbums",
+  "version": "1.0.0",
+  "homepage": "https://github.com/adamstegman/photo_albums",
+  "authors": [
+    "Adam Stegman <astegman@gmail.com>"
+  ],
+  "description": "A webapp to view photos and organize them into albums.",
+  "main": "config.ru",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "1.2.0",
+    "ember-data": "1.0.0-beta.4",
+    "ember-simple-auth": "0.3.0",
+    "foundation": "5.0.2",
+    "jquery": "2.0.3",
+    "modernizr": "2.7.0",
+    "momentjs": "2.5.0"
+  },
+  "resolutions": {
+    "ember": "1.2.0"
+  }
+}
