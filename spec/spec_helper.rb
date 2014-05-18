@@ -1,5 +1,4 @@
 ENV["RAILS_ENV"] ||= 'test'
-require 'rspec/autorun'
 require 'webmock/rspec'
 
 $:.unshift(File.expand_path('../../', __FILE__))

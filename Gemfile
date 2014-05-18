@@ -2,7 +2,7 @@ ruby '2.0.0'
 
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.0'
 gem 'active_model_serializers'
 gem 'activesupport'
 gem 'addressable', require: 'addressable/template'
@@ -39,7 +39,11 @@ group :development, :test do
   gem 'poltergeist'
   gem 'pry'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-core', git: 'https://github.com/rspec/rspec-core.git'
+  gem 'rspec-expectations', git: 'https://github.com/rspec/rspec-expectations.git'
+  gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks.git'
+  gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails.git'
+  gem 'rspec-support', git: 'https://github.com/rspec/rspec-support.git'
 end
 
 group :test do

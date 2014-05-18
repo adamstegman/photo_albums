@@ -16,7 +16,7 @@ module HashMatchingWithPrecision
     sort_keys(expected_hash, actual_hash).all? { |keys| keys.empty? }
   end
 
-  def failure_message(expected_hash, actual_hash)
+  def failure_message_with_diff(expected_hash, actual_hash)
     removed_keys, mismatched_keys, added_keys = sort_keys(expected_hash, actual_hash)
     message = "expected:\n#{expected_hash.inspect}\nto match"
     message << " with precision #{@precision}" if @precision
@@ -54,8 +54,8 @@ RSpec::Matchers.define :match_hash do |expected|
     @precision = precision
   end
 
-  failure_message_for_should do |actual|
-    failure_message(expected, actual)
+  failure_message do |actual|
+    failure_message_with_diff(expected, actual)
   end
 end
 
@@ -86,9 +86,9 @@ RSpec::Matchers.define :match_array_of_hashes do |expected|
     @precision = precision
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     closest_matching_hashes(expected, actual).map { |expected_hash, actual_hash|
-      failure_message(expected_hash, actual_hash) unless hash_matches?(expected_hash, actual_hash)
+      failure_message_with_diff(expected_hash, actual_hash) unless hash_matches?(expected_hash, actual_hash)
     }.compact.join("\n----------\n")
   end
 end

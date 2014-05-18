@@ -6,7 +6,7 @@ require 'photo_metadata'
 
 describe PhotoMetadata do
   let!(:exifr_jpeg) { class_double('EXIFR::JPEG').as_stubbed_const }
-  let(:content) { double(:content).as_null_object }
+  let(:content) { double(:content, to_str: '').as_null_object }
 
   subject { described_class.new(content, logger: Logger.new('/dev/null')) }
 
