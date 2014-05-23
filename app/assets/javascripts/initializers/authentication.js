@@ -5,7 +5,7 @@ Ember.Application.initializer({
   name: 'authentication',
   initialize: function(container, application) {
     Ember.SimpleAuth.setup(container, application, {
-      authorizerFactory: 'authorizer:devise'
+      authorizerFactory: 'ember-simple-auth-authorizer:devise'
     });
   }
 });

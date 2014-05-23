@@ -1,8 +1,9 @@
 module Authentication
   def current_user
-    email = request.headers['auth-email']
-    token = request.headers['auth-token']
-    User.where(email: email, token: token).first
+    token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
+    if token
+      User.where(email: options[:user_email], token: token).first
+    end
   end
 
   def ensure_authorization

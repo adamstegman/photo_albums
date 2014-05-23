@@ -2,7 +2,7 @@ require 'controller_spec_helper'
 require 'app/controllers/users_controller'
 
 describe UsersController do
-  subject(:request) { post :sign_in, email: email, password: user.password, format: :json }
+  subject(:request) { post :sign_in, user: {email: email, password: user.password}, format: :json }
   let(:email) { user.email }
 
   let(:user) { create :user, :authenticated }

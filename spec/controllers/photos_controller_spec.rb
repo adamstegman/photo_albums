@@ -16,7 +16,7 @@ describe PhotosController do
     it_behaves_like "an authenticated controller action"
 
     context "when authenticated" do
-      include_context "when the request is authorized for a user"
+      include_context "when the request is authorized for an authenticated user"
 
       it "returns the requested photo contents" do
         photos_attributes = JSON.parse(subject.body)['photos']
@@ -54,7 +54,7 @@ describe PhotosController do
     it_behaves_like "an authenticated controller action"
 
     context "when authenticated" do
-      include_context "when the request is authorized for a user"
+      include_context "when the request is authorized for an authenticated user"
 
       it "returns the photo attributes" do
         attributes = JSON.parse(subject.body)['photo']

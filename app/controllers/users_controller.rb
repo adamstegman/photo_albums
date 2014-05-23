@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   respond_to :json
 
   def sign_in
-    user = User.where(email: params[:email].downcase).first.try(:authenticate, params[:password])
+    user_params = params[:user]
+    user = User.where(email: user_params[:email].downcase).first.try(:authenticate, user_params[:password])
     if user
       respond_with user
     else

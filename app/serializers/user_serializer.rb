@@ -1,13 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
   self.root = false
 
-  attributes :auth_email, :auth_token
+  attributes :user_email, :user_token
 
-  def auth_email
+  def user_email
     object.email
   end
 
-  def auth_token
+  def user_token
     object.token
   end
 end
