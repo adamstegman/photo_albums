@@ -6,10 +6,12 @@ class PhotosController < ApplicationController
   before_action :ensure_authorization
 
   def index
-    respond_with Photo.for_user(current_user).where(id: params[:ids])
+    photos = Photo.for_user(current_user).where(id: params[:ids])
+    render json: PhotosSessionsSerializer.new(photos).as_json
   end
 
   def show
-    respond_with Photo.for_user(current_user).find(params[:id])
+    photo = Photo.for_user(current_user).find(params[:id])
+    render json: PhotoSessionSerializer.new(photo).as_json
   end
 end

@@ -1,8 +1,8 @@
 require 'feature_spec_helper'
 
 feature 'The Inbox album', js: true do
-  given!(:user) { create :user, password: 'abc' }
-  given!(:photo) { create :photo, :fixture, user: user }
+  given!(:user) { create :real_user, password: 'abc' }
+  given!(:photo) { create :real_photo, user: user }
 
   subject(:album_page) { Pages::Album.open('Inbox') }
 

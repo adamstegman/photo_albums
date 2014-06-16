@@ -4,8 +4,8 @@ module Pages
     include Capybara::DSL
 
     def photo?(photo)
-      img = element.find('img')
-      img[:src].include?(photo.to_base64)
+      raise ArgumentError unless photo.id
+      photo_id_from_element(element) == photo.id
     end
 
     def present?
@@ -49,6 +49,12 @@ module Pages
 
     def page_attributes
       @page_attributes ||= element.find('dl')
+    end
+
+    def photo_id_from_element(photo_element)
+      if /\Aphoto-(?<id>\d+)\z/ =~ photo_element[:id]
+        id.to_i
+      end
     end
   end
 end

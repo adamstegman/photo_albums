@@ -6,11 +6,10 @@ gem 'rails'
 gem 'active_model_serializers'
 gem 'activesupport'
 gem 'addressable', require: 'addressable/template'
+gem 'aws-sdk'
 gem 'bcrypt-ruby'
-gem 'carrierwave'
 gem 'ember-rails'
 gem 'exifr'
-gem 'fog'
 gem 'foreman'
 gem 'jquery-rails'
 gem 'kgio'
@@ -40,6 +39,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'selenium-webdriver'
 end
 
 group :test do

@@ -1,7 +1,12 @@
 PhotoAlbums.PhotoController = Ember.ObjectController.extend({
   dataURI: function() {
-    return "data:" + this.get('model.contentType') + ";base64," + this.get('model.content');
-  }.property('model.contentType', 'model.content'),
+    var content = this.get('model.base64Content');
+    if (content) {
+      return "data:" + this.get('model.contentType') + ";base64," + content;
+    } else {
+      return "";
+    }
+  }.property('model.contentType', 'model.base64Content'),
 
   locationURL: function() {
     var url = "https://maps.google.com/maps?q="

@@ -10,7 +10,15 @@ describe('PhotoAlbums.PhotoController', function() {
 
   describe('#dataURI', function() {
     it("returns a base64 data URI", function() {
-      expect(controller.get('dataURI')).toMatch(/data:image\/jpeg;base64,[\/+=0-9A-z]+/);
+      controller.set('model.base64Content', "base64Content");
+
+      expect(controller.get('dataURI')).toBe("data:image/jpeg;base64,base64Content");
+    });
+
+    it("returns an empty string when there is no content", function() {
+      controller.set('model.base64Content', undefined);
+
+      expect(controller.get('dataURI')).toBe("");
     });
   });
 

@@ -27,6 +27,7 @@ module PhotoAlbums
       ember-data/ember-data.js
       momentjs/moment.js
       modernizr/modernizr.js
+      aws-sdk/dist/aws-sdk.js
     )
 
     config.autoload_paths += %W(#{config.root}/lib)

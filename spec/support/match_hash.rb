@@ -1,5 +1,6 @@
 module HashMatchingWithPrecision
   def sort_keys(expected_hash, actual_hash)
+    actual_hash ||= {}
     removed_keys = expected_hash.keys - actual_hash.keys
     mismatched_keys = []
     added_keys = actual_hash.keys - expected_hash.keys
@@ -63,7 +64,7 @@ RSpec::Matchers.define :match_array_of_hashes do |expected|
   include HashMatchingWithPrecision
 
   def closest_matching_hashes(expected_hashes, actual_hashes)
-    leftover_actual_hashes = actual_hashes.dup
+    leftover_actual_hashes = Array(actual_hashes).dup
     expected_hashes.reduce({}) { |hashes, expected_hash|
       closest_actual_hash = leftover_actual_hashes.min { |a, b|
         hash_match_score(expected_hash, a) <=> hash_match_score(expected_hash, b)

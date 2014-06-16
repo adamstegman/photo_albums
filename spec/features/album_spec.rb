@@ -1,9 +1,9 @@
 require 'feature_spec_helper'
 
 feature 'A photo album', js: true do
-  given!(:user) { create :user, password: 'abc' }
+  given!(:user) { create :real_user, password: 'abc' }
   given!(:album) { double(:album, name: 'Inbox') }
-  given!(:photo) { create :photo, :fixture, user: user }
+  given!(:photo) { create :real_photo, user: user }
 
   # FIXME: create an album to use for this feature and assign the photo to it
   subject(:album_page) { Pages::Album.open(album.name) }

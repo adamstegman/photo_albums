@@ -31,11 +31,19 @@ module Pages
     private
 
     def photo_elements
-      element.find('.album-thumbnails').all('li')
+      # using the poor man's timeout instead of Timeout::timeout
+      # Timeout.timeout fails when using Capybara finders, presumably because Capybara is using Timeout internally
+      elements = []
+      start = Time.now.to_i
+      until elements.any? || (Time.now.to_i - start) == Capybara.default_wait_time
+        sleep 0.1
+        elements = element.find('.album-thumbnails').all('li')
+      end
+      elements
     end
 
     def photo_id_from_element(photo_element)
-      if /\/(?<id>\d+)\z/ =~ photo_element.find('a')[:href]
+      if /\Aphoto-(?<id>\d+)\z/ =~ photo_element[:id]
         id
       end
     end

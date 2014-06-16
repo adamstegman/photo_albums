@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511064415) do
+ActiveRecord::Schema.define(version: 20140524040313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20140511064415) do
     t.float    "longitude"
     t.text     "comment"
     t.integer  "user_id"
+    t.string   "blob_bucket"
+    t.string   "blob_key"
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(version: 20140511064415) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_key_id"
+    t.string   "secret_access_key"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
