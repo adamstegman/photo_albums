@@ -40,9 +40,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'selenium-webdriver'
-end
-
-group :test do
+  gem 'vcr'
   gem 'webmock'
 end
 

@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sts.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetSessionToken&DurationSeconds=3600&Timestamp=2014-06-22T02%3A48%3A02Z&Version=2011-06-15
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '97'
+      User-Agent:
+      - aws-sdk-ruby/1.41.0 ruby/2.0.0 x86_64-darwin13.0.0
+      Host:
+      - sts.amazonaws.com
+      X-Amz-Date:
+      - 20140622T024802Z
+      X-Amz-Content-Sha256:
+      - b38d147677e32b35d6d15408f08541dab563ad9a1a9084a85f9ec6ec58c3b106
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAJOELGXBARFGDN2PA/20140622/us-east-1/sts/aws4_request,
+        SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date,
+        Signature=822b9d8fec9d7347f91007117b508f84d74b680ab28e439bd30af3e603103dd3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - a0f81150-f9b7-11e3-8a55-e773007d4bb8
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '868'
+      Date:
+      - Sun, 22 Jun 2014 02:48:02 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetSessionTokenResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+          <GetSessionTokenResult>
+            <Credentials>
+              <SessionToken>AQoDYXdzECQa8AH37FVc9Ah64eSbG1emZqhCzIEqXz2ijQ4bjAWnIIy8Bv2DSkrND6QQ3kG2SdyAF6lyaPF4jnfM1FIcNijj+K/JNC4Oc4jP6D7xlvN/5cvPR2P+l7AZXwHEd5s/407tLpmSIOfVfkg93df9meaWhJew7sGUI01ifVrxZ2fQSxFE5SzsmFrlTiN+ECIP+jIXDTJ2KbLYYZyys8wJv2ToHSlxm22GS6CyQa1ifN25dFVCew2L0ELiqewwjbjLoj5RYzQo/xc7SCLyrBttyEJu/khmZOdC7L+0RcbRCH85cY0rqR7QVOSISP3ySI9guCfys7cg4oeZnQU=</SessionToken>
+              <SecretAccessKey>9qm5lSNKvMnpm4ObBOWEnpnk8JhsjvAsdfOdtqnR</SecretAccessKey>
+              <Expiration>2014-06-22T03:48:02Z</Expiration>
+              <AccessKeyId>ASIAJBZEN6RAOTWWZFEQ</AccessKeyId>
+            </Credentials>
+          </GetSessionTokenResult>
+          <ResponseMetadata>
+            <RequestId>a0f81150-f9b7-11e3-8a55-e773007d4bb8</RequestId>
+          </ResponseMetadata>
+        </GetSessionTokenResponse>
+    http_version: 
+  recorded_at: Sun, 22 Jun 2014 02:48:03 GMT
+recorded_with: VCR 2.9.2

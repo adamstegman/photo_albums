@@ -25,13 +25,13 @@ Run JavaScript tests by going to [http://localhost:8888/](http://localhost:8888/
 
 ### Feature tests
 
-Note that feature tests will not work until you have set up an AWS account.
-Set up the same environment variables as in deployment, but additionally include:
+If you want to do live feature tests using an AWS account, set up the same environment variables as in deployment, but additionally include:
 
+* `LIVE_FEATURE_SPECS` (set this to anything)
 * `TEST_ACCESS_KEY_ID`
 * `TEST_SECRET_ACCESS_KEY`
 
-The purpose of these keys is to separate uploading and downloading permissions, but that is not necessary.
+The purpose of the separate access keys is to separate uploading and downloading permissions.
 
 ## Deployment
 
