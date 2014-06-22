@@ -27,8 +27,16 @@ describe('PhotoAlbums.PhotoRoute', function() {
 
       describe('album', function() {
         it("is the photo's album", function() {
+          var check = function() {
+            if (applicationController.get('album')) {
+              expect(applicationController.get('album').get('name')).toBe("Inbox");
+              done();
+            } else {
+              setTimeout(check, 50);
+            }
+          }
+          setTimeout(check, 50);
           subject();
-          expect(applicationController.get('album').get('name')).toBe("Inbox");
         });
       });
 

@@ -10,8 +10,8 @@ PhotoAlbums.Photo = DS.Model.extend({
   blobBucket: DS.attr('string'),
   blobKey: DS.attr('string'),
   
-  album: DS.belongsTo('album'),
-  blobSession: DS.belongsTo('blobSession'),
+  album: DS.belongsTo('album', {async: true}),
+  blobSession: DS.belongsTo('blobSession', {async: false}),
 
   base64Content: function() {
     var photo = this;
