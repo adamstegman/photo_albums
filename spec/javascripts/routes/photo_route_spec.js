@@ -14,10 +14,19 @@ describe('PhotoAlbums.PhotoRoute', function() {
     controllerHelper.setModel(controller, 'photo');
   });
 
-  describe('#setApplicationContext', function() {
+  describe('#setupController', function() {
     var subject = function() {
-      route.setApplicationContext(controller);
+      route.setupController(controller, undefined);
     };
+
+    describe("sets route properties:", function() {
+      describe('title', function() {
+        it("is the photo and album name", function() {
+          subject();
+          expect(route.get('title')).toBe("IMG_2598.jpg - Inbox");
+        });
+      });
+    });
 
     describe("sets ApplicationController properties:", function() {
       var applicationController;
@@ -27,16 +36,8 @@ describe('PhotoAlbums.PhotoRoute', function() {
 
       describe('album', function() {
         it("is the photo's album", function() {
-          var check = function() {
-            if (applicationController.get('album')) {
-              expect(applicationController.get('album').get('name')).toBe("Inbox");
-              done();
-            } else {
-              setTimeout(check, 50);
-            }
-          }
-          setTimeout(check, 50);
           subject();
+          expect(applicationController.get('album').get('name')).toBe("Inbox");
         });
       });
 

@@ -1,4 +1,6 @@
-PhotoAlbums.LoginRoute = Ember.Route.extend({
+PhotoAlbums.LoginRoute = PhotoAlbums.Route.extend({
+  title: "Login",
+
   setupController: function(controller, model) {
     this._super(controller, model);
     this.setApplicationContext(controller);

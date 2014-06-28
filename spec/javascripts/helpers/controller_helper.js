@@ -11,12 +11,21 @@ window.controllerHelper = (function() {
           // remove, or at least abstract, after upgrading ember-data
           if (attribute == 'album') {
             var album = modelHelper.fake('album');
-            var albumPromise = new Ember.RSVP.Promise(function(resolve) { resolve(album); });
+            var albumPromise = new Ember.RSVP.Promise(function(resolve) {
+              Ember.run(function() {
+                resolve(album);
+              });
+            });
             controller.set('model.album', albumPromise);
+
             var albumAttributes = modelHelper.attributesFor('album');
             for (var albumAttribute in albumAttributes) {
               if (albumAttributes.hasOwnProperty(albumAttribute)) {
-                var attributePromise = new Ember.RSVP.Promise(function(resolve) { resolve(album.get(albumAttribute)); });
+                var attributePromise = new Ember.RSVP.Promise(function(resolve) {
+                  Ember.run(function() {
+                    resolve(album.get(albumAttribute));
+                  });
+                });
                 controller.set('model.album.' + albumAttribute, attributePromise);
               }
             }

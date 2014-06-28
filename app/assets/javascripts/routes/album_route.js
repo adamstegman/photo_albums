@@ -1,7 +1,8 @@
-PhotoAlbums.AlbumRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
+PhotoAlbums.AlbumRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
   setupController: function(controller, model) {
     this._super(controller, model);
     this.setApplicationContext(controller);
+    this.set('title', controller.get('name'));
   },
 
   setApplicationContext: function(controller) {

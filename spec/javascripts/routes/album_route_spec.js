@@ -14,10 +14,19 @@ describe('PhotoAlbums.AlbumRoute', function() {
     controllerHelper.setModel(controller, 'album');
   });
 
-  describe('#setApplicationContext', function() {
+  describe('#setupController', function() {
     var subject = function() {
-      route.setApplicationContext(controller);
+      route.setupController(controller, undefined);
     };
+
+    describe('sets route properties:', function() {
+      describe('title', function() {
+        it("is the album name", function() {
+          subject();
+          expect(route.get('title')).toBe("Inbox");
+        });
+      });
+    });
 
     describe("sets ApplicationController properties:", function() {
       var applicationController;

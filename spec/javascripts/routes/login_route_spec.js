@@ -8,15 +8,22 @@ describe('PhotoAlbums.LoginRoute', function() {
     route = testHelper.lookup('route', 'login');
   });
 
-  var controller;
-  beforeEach(function() {
-    controller = testHelper.lookup('controller', 'login');
-  });
-
-  describe('#setApplicationContext', function() {
+  describe('#setupController', function() {
     var subject = function() {
-      route.setApplicationContext(controller);
+      route.setupController(controller, undefined);
     };
+
+    var controller;
+    beforeEach(function() {
+      controller = testHelper.lookup('controller', 'login');
+    });
+
+    describe('title', function() {
+      it('is "Login"', function() {
+        subject();
+        expect(route.get('title')).toBe("Login");
+      });
+    });
 
     describe("sets ApplicationController properties:", function() {
       var applicationController;

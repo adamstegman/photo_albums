@@ -11,13 +11,13 @@
 #   - dist/**/*.js
 #
 src_files:
-  - assets/modernizr.js
+  - assets/modernizr/modernizr.js
   - assets/jquery.js
   - assets/handlebars.js
   - assets/ember.js
   - assets/ember-data.js
-  - assets/moment.js
-  - assets/aws-sdk.js
+  - assets/momentjs/moment.js
+  - assets/aws-sdk/dist/aws-sdk.js
   - assets/application.js
   - ../vendor/lib/jasmine-ember-testing/lib/adapter.js
   - ../spec/javascripts/support/ember_spec_helper.js
