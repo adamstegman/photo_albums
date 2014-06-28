@@ -40,24 +40,24 @@ describe('PhotoAlbums.PhotoRoute', function() {
         });
       });
 
-      describe('title', function() {
+      describe('header', function() {
         it("is falsy", function() {
           Ember.run(function() {
-            applicationController.set('title', 'something');
+            applicationController.set('header', 'something');
           });
 
           subject();
-          expect(applicationController.get('title')).toBeFalsy();
+          expect(applicationController.get('header')).toBeFalsy();
         });
       });
 
       /*
        * FIXME: results in a JSON parser error
        * try after upgrading ember-data
-      describe('parentTitle', function() {
+      describe('parentHeader', function() {
         it("is the photo's album name", function() {
           subject();
-          expect(applicationController.get('parentTitle')).toBe("Inbox"));
+          expect(applicationController.get('parentHeader')).toBe("Inbox"));
         });
       });
       */

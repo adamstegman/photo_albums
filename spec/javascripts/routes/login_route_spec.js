@@ -35,21 +35,21 @@ describe('PhotoAlbums.LoginRoute', function() {
         });
       });
 
-      describe('title', function() {
+      describe('header', function() {
         it("is Login", function() {
           subject();
-          expect(applicationController.get('title')).toBe("Login");
+          expect(applicationController.get('header')).toBe("Login");
         });
       });
 
-      describe('parentTitle', function() {
+      describe('parentHeader', function() {
         it("is falsy", function() {
           Ember.run(function() {
-            applicationController.set('parentTitle', 'something');
+            applicationController.set('parentHeader', 'something');
           });
 
           subject();
-          expect(applicationController.get('parentTitle')).toBeFalsy();
+          expect(applicationController.get('parentHeader')).toBeFalsy();
         });
       });
     });

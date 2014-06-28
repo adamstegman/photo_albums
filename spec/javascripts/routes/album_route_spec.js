@@ -32,21 +32,21 @@ describe('PhotoAlbums.AlbumRoute', function() {
         });
       });
 
-      describe('title', function() {
+      describe('header', function() {
         it("is the album name", function() {
           subject();
-          expect(applicationController.get('title')).toBe(controller.get('name'));
+          expect(applicationController.get('header')).toBe(controller.get('name'));
         });
       });
 
-      describe('parentTitle', function() {
+      describe('parentHeader', function() {
         it("is falsy", function() {
           Ember.run(function() {
-            applicationController.set('parentTitle', 'something');
+            applicationController.set('parentHeader', 'something');
           });
 
           subject();
-          expect(applicationController.get('parentTitle')).toBeFalsy();
+          expect(applicationController.get('parentHeader')).toBeFalsy();
         });
       });
     });

@@ -8,8 +8,8 @@ PhotoAlbums.AlbumRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteM
     var applicationController = this.controllerFor('application');
     Ember.run(function() {
       applicationController.set('album', controller);
-      applicationController.set('title', controller.get('name'));
-      applicationController.set('parentTitle', undefined);
+      applicationController.set('header', controller.get('name'));
+      applicationController.set('parentHeader', undefined);
     });
   }
 });

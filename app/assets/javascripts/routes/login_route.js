@@ -8,8 +8,8 @@ PhotoAlbums.LoginRoute = Ember.Route.extend({
     var applicationController = this.controllerFor('application');
     Ember.run(function() {
       applicationController.set('album', undefined);
-      applicationController.set('title', 'Login');
-      applicationController.set('parentTitle', undefined);
+      applicationController.set('header', 'Login');
+      applicationController.set('parentHeader', undefined);
     });
   }
 });
