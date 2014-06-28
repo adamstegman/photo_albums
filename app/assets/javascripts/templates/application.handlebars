@@ -7,7 +7,7 @@
       <section class="middle tab-bar-section">
         <h1>
           {{#if album}}
-            {{#link-to "album" album}}
+            {{#link-to "album.index" album}}
               {{partial "header"}}
             {{/link-to}}
           {{else}}
@@ -22,7 +22,7 @@
           <li><label>Albums</label></li>
           <li>
             <ol>
-              <li>{{#link-to "album" "inbox"}}Inbox{{/link-to}}</li>
+              <li>{{#link-to "album.index" "inbox"}}Inbox{{/link-to}}</li>
             </ol>
           </li>
         </ul>
