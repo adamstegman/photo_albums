@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
       result
     end
   end
+
+  def blob_bucket
+    raise "Cannot determine User#blob_bucket without id" unless id
+    "#{ENV['AWS_RESOURCE_PREFIX']}#{id}"
+  end
 end

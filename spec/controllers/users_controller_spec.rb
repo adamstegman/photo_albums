@@ -2,13 +2,14 @@ require 'controller_spec_helper'
 require 'app/controllers/users_controller'
 
 describe UsersController do
-  subject(:request) { post :sign_in, user: {email: email, password: user.password}, format: :json }
-  let(:email) { user.email }
-
   let(:user) { create :user, :authenticated }
-  before { allow(User).to receive(:where).with(email: user.email).and_return(double(:relation, first: user)) }
 
   describe "POST sign_in" do
+    subject(:request) { post :sign_in, user: {email: email, password: user.password}, format: :json }
+
+    before { allow(User).to receive(:where).with(email: user.email).and_return(double(:relation, first: user)) }
+    let(:email) { user.email }
+
     it "returns the authenticated user" do
       expect(user).to receive(:authenticate).with(user.password).and_return(user)
 

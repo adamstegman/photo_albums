@@ -10,6 +10,7 @@ PhotoAlbums::Application.routes.draw do
       post :sign_in
     end
   end
+  resource :blob_session, only: [:show]
 
-  root :to => 'assets#index'
+  root to: 'assets#index'
 end

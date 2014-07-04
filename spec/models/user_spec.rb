@@ -21,4 +21,14 @@ describe User do
     user = create :user, password: "abc"
     expect("abc").not_to eq(user.password_digest)
   end
+
+  it "has a blob bucket where its photos should go" do
+    stub_const('ENV', 'AWS_RESOURCE_PREFIX' => 'bucket-')
+    user = create :user
+    expect(user.blob_bucket).to eq("bucket-#{user.id}")
+  end
+
+  it "does not have a blob bucket if it is not persisted" do
+    expect { build(:user).blob_bucket }.to raise_error
+  end
 end
