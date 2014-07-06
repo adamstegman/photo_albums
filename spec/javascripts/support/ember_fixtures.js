@@ -23,6 +23,7 @@ PhotoAlbums.Photo.FIXTURES = [{
 }];
 
 PhotoAlbums.BlobSession.FIXTURES = [{
+  id: "some-bucket",
   sessionToken: "token",
   accessKeyId: "AKIAIJBD2PEYUG4WXJXQ",
   secretAccessKey: "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"

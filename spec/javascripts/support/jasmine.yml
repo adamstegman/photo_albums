@@ -17,11 +17,13 @@ src_files:
   - assets/ember.js
   - assets/ember-data.js
   - assets/momentjs/moment.js
+  - assets/node-uuid/uuid.js
   - assets/aws-sdk/dist/aws-sdk.js
   - assets/application.js
   - ../vendor/lib/jasmine-ember-testing/lib/adapter.js
   - ../spec/javascripts/support/ember_spec_helper.js
   - ../spec/javascripts/support/ember_fixtures.js
+  - ../spec/javascripts/support/mock-ajax.js
 
 # stylesheets
 #

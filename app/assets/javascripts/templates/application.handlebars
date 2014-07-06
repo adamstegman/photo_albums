@@ -15,6 +15,14 @@
           {{/if}}
         </h1>
       </section>
+      {{#if album}}
+        <section class="right-small">
+          {{#link-to "album.upload" album class="upload"}}
+            <i class="fa fa-cloud-upload"></i>
+            <span>Upload</span>
+          {{/link-to}}
+        </section>
+      {{/if}}
     </nav>
     <aside class="left-off-canvas-menu">
       <nav class="main">

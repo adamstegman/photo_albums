@@ -30,8 +30,18 @@ nav.top {
   }
 }
 
-#show-nav-main {
+#show-nav-main, .upload > span {
   @extend %hidden-text;
+}
+
+.upload {
+  display: block;
+  padding: 2px 0 0 5px;
+  text-align: center;
+
+  .fa {
+    font-size: 1.5em;
+  }
 }
 
 nav.main {
@@ -53,7 +63,8 @@ nav.main {
 }
 
 %hidden-text {
-  text-indent: -9999em;
+  font-size: 0;
+  line-height: 0;
 }
 
 %inverted-link {

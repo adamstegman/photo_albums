@@ -28,6 +28,7 @@ module PhotoAlbums
       momentjs/moment.js
       modernizr/modernizr.js
       aws-sdk/dist/aws-sdk.js
+      node-uuid/uuid.js
     )
 
     config.autoload_paths += %W(#{config.root}/lib)

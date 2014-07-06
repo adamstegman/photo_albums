@@ -1,11 +1,11 @@
-describe('PhotoAlbums.AlbumIndexRoute', function() {
+describe('PhotoAlbums.AlbumUploadRoute', function() {
   beforeEach(function() {
     PhotoAlbums.reset();
   });
 
   var route;
   beforeEach(function() {
-    route = testHelper.lookup('route', 'album.index');
+    route = testHelper.lookup('route', 'album.upload');
   });
 
   describe('#setupController', function() {
@@ -15,15 +15,15 @@ describe('PhotoAlbums.AlbumIndexRoute', function() {
 
     var controller;
     beforeEach(function() {
-      controller = testHelper.lookup('controller', 'album.index');
+      controller = testHelper.lookup('controller', 'album.upload');
       controllerHelper.setModel(controller, 'album');
     });
 
     describe('sets route properties:', function() {
       describe('title', function() {
-        it("is the album name", function() {
+        it('is "Upload" with the album name', function() {
           subject();
-          expect(route.get('title')).toBe("Inbox");
+          expect(route.get('title')).toBe("Upload - Inbox");
         });
       });
     });
@@ -42,20 +42,20 @@ describe('PhotoAlbums.AlbumIndexRoute', function() {
       });
 
       describe('header', function() {
-        it("is the album name", function() {
+        it("is falsy", function() {
+          Ember.run(function() {
+            applicationController.set('header', 'something');
+          });
+
           subject();
-          expect(applicationController.get('header')).toBe(controller.get('name'));
+          expect(applicationController.get('header')).toBeFalsy();
         });
       });
 
       describe('parentHeader', function() {
-        it("is falsy", function() {
-          Ember.run(function() {
-            applicationController.set('parentHeader', 'something');
-          });
-
+        it("is the album name", function() {
           subject();
-          expect(applicationController.get('parentHeader')).toBeFalsy();
+          expect(applicationController.get('parentHeader')).toBe("Inbox");
         });
       });
     });
