@@ -56,7 +56,7 @@ shared_examples_for "an authenticated controller action" do
     include_context "when the request is authorized for an authenticated user"
 
     it "is successful" do
-      expect(subject.code).to eq("200")
+      expect(subject).to be_success
     end
   end
 end
