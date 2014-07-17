@@ -1,5 +1,3 @@
-PhotoAlbums.ApplicationAdapter = DS.FixtureAdapter.extend();
-
 PhotoAlbums.Album.FIXTURES = [{
   id: "inbox",
   name: "Inbox",

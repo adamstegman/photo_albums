@@ -3,6 +3,13 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
     PhotoAlbums.reset();
   });
 
+  beforeEach(function() {
+    jasmine.Ajax.install();
+  });
+  afterEach(function() {
+    jasmine.Ajax.uninstall();
+  });
+
   var route;
   beforeEach(function() {
     route = testHelper.lookup('route', 'album.upload');
@@ -63,13 +70,21 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
   });
 
   describe('upload action', function() {
-    it("uploads the photo to S3 using a blob session from the server", function() {
-      var params, callback;
-      var putObject = jasmine.createSpy('putObject');
+    var subject = function() {
+      route._upload("some-data", {contentType: "some/type", filename: "some-file"});
+    };
+
+    var params, callback;
+    var putObject;
+    beforeEach(function() {
+      putObject = jasmine.createSpy('putObject');
       putObject.and.callFake(function(p, c) {
         params = p;
         callback = c;
       });
+    });
+
+    beforeEach(function() {
       var blobSession = jasmine.createSpyObj('blobSession', ['get']);
       blobSession.get.and.callFake(function(param) {
         if (param === 'id') {
@@ -84,10 +99,14 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
         });
       });
       spyOn(route, 'getSession').and.returnValue(blobSessionPromise);
+    });
+
+    beforeEach(function() {
       spyOn(uuid, 'v4').and.returnValue("some-key");
+    });
 
-      route._upload("some-data", {ContentType: "some/type"});
-
+    it("uploads the photo to S3 using a blob session from the server", function() {
+      subject();
       expect(params.Bucket).toBe("some-bucket");
       expect(params.Key).toBe("some-key");
       expect(params.Body).toBe("some-data");
@@ -96,18 +115,40 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
     });
 
     it("uploads the photo information to the server", function() {
+      subject();
+      callback(null);
+
+      var photoInfoUpload = jasmine.Ajax.requests.mostRecent();
+      expect(photoInfoUpload.method).toBe('POST');
+      expect(photoInfoUpload.url).toBe('/photos');
+      expect(JSON.parse(photoInfoUpload.params)).toEqual({
+        photo: {
+          blob_bucket: "some-bucket",
+          blob_key: "some-key",
+          content_type: "some/type",
+          filename: "some-file",
+          album_id: null,
+          blob_session_id: null,
+          comment: null,
+          latitude: null,
+          longitude: null,
+          width: null,
+          height: null,
+          taken_at: null
+        }
+      });
+    });
+
+    it("retries the photo upload if something goes wrong", function() {
+      // FIXME
+    });
+
+    it("retries the photo information upload if something goes wrong", function() {
       // FIXME
     });
   });
 
   describe('getSession', function() {
-    beforeEach(function() {
-      PhotoAlbums.ApplicationAdapter = DS.ActiveModelAdapter.extend();
-    });
-    afterEach(function() {
-      PhotoAlbums.ApplicationAdapter = DS.FixtureAdapter.extend();
-    });
-
     afterEach(function() {
       route.store.all('blobSession').forEach(function(session) {
         session.deleteRecord();
@@ -115,12 +156,6 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
       });
     });
 
-    beforeEach(function() {
-      jasmine.Ajax.install();
-    });
-    afterEach(function() {
-      jasmine.Ajax.uninstall();
-    });
     var stubSuccessfulBlobSessionRequest = function(id) {
       jasmine.Ajax.stubRequest('/blob_session').andReturn({
         status: 200,

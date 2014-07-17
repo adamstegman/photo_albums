@@ -7,7 +7,7 @@ PhotoAlbums.PhotoFile = Ember.View.extend({
     if (e.target.files.length > 0) {
       var view = this;
       var file = e.target.files[0];
-      var metadata = {ContentType: file.type};
+      var metadata = {contentType: file.type, filename: this.basename(file.name)};
 
       var reader = new FileReader();
       reader.onload = function(e) {
@@ -15,5 +15,10 @@ PhotoAlbums.PhotoFile = Ember.View.extend({
       };
       reader.readAsArrayBuffer(file);
     }
+  },
+
+  basename: function(path) {
+    // strip leading segments that are followed by forward- or back-slashes.
+    return path.replace(/[^\\]+\\|\/?[^\/]+\//g, '');
   }
 });

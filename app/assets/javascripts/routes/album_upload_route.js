@@ -15,38 +15,47 @@ PhotoAlbums.AlbumUploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authent
   },
 
   actions: {
-    upload: function(photoData, params) {
-      this._upload(photoData, params);
+    upload: function(photoData, photoAttributes) {
+      this._upload(photoData, photoAttributes);
     }
   },
 
-  _upload: function(photoData, params) {
+  _upload: function(photoData, photoAttributes) {
     var _this = this;
     Ember.run(function() {
-      _this.getSession().then(_this.uploadAndCreatePhoto(photoData, params));
+      _this.getSession().then(_this.uploadAndCreatePhoto(photoData, photoAttributes));
     });
   },
 
-  uploadAndCreatePhoto: function(photoData, params) {
+  uploadAndCreatePhoto: function(photoData, photoAttributes) {
     var _this = this;
     return function(session) {
-      params.Bucket = session.get('id');
-      params.Key = uuid.v4();
-      params.Body = photoData;
+      photoAttributes.blobBucket = session.get('id');
+      photoAttributes.blobKey    = uuid.v4();
+      var s3Params = {
+        Bucket: photoAttributes.blobBucket,
+        Key: photoAttributes.blobKey,
+        Body: photoData,
+        ContentType: photoAttributes.contentType
+      };
       var s3 = session.get('s3');
       Ember.run(function() {
-        s3.putObject(params, _this.createPhotoFromS3Params(params));
+        s3.putObject(s3Params, _this.createPhotoFromAttributes(photoAttributes));
       });
     };
   },
 
-  createPhotoFromS3Params: function(params) {
+  createPhotoFromAttributes: function(photoAttributes) {
+    var _this = this;
     return function(err, data) {
       if (err) {
         // FIXME: handle error cases
         console.error(err);
       } else {
-        console.log("DEBUG: success");
+        Ember.run(function() {
+          var photo = _this.store.createRecord('photo', photoAttributes);
+          photo.save();
+        });
       }
     };
   },
