@@ -1,4 +1,8 @@
 describe('PhotoAlbums.Photo', function() {
+  beforeEach(function() {
+    PhotoAlbums.reset();
+  });
+
   var photo;
   beforeEach(function() {
     Ember.run(function() {

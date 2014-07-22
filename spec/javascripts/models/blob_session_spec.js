@@ -1,4 +1,8 @@
 describe('PhotoAlbums.BlobSession', function() {
+  beforeEach(function() {
+    PhotoAlbums.reset();
+  });
+
   var session;
   beforeEach(function() {
     Ember.run(function() {
