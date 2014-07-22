@@ -31,7 +31,9 @@ FactoryGirl.define do
 
       association :user, factory: :real_user
 
-      before(:create) { |photo| upload_photo(photo) }
+      before(:create) do |photo|
+        upload_photo(photo)
+      end
     end
   end
 end

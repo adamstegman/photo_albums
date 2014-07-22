@@ -55,6 +55,7 @@ PhotoAlbums.AlbumUploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authent
         Ember.run(function() {
           var photo = _this.store.createRecord('photo', photoAttributes);
           photo.save();
+          _this.transitionTo('album.index', _this.modelFor('album'));
         });
       }
     };

@@ -28,8 +28,10 @@ Run JavaScript tests by going to [http://localhost:8888/](http://localhost:8888/
 If you want to do live feature tests using an AWS account, set up the same environment variables as in deployment, but additionally include:
 
 * `LIVE_FEATURE_SPECS` (set this to anything)
+* `TEST_BLOB_USERNAME`
 * `TEST_ACCESS_KEY_ID`
 * `TEST_SECRET_ACCESS_KEY`
+* `TEST_ACCOUNT_NUMBER`
 
 The purpose of the separate access keys is to separate uploading and downloading permissions.
 
@@ -42,6 +44,7 @@ You'll need to create the following environment variables:
 * `AWS_REGION`
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`
+* `AWS_ACCOUNT_NUMBER`
 
 [Heroku]: http://heroku.com
 [multi-buildpack]: https://github.com/ddollar/heroku-buildpack-multi
