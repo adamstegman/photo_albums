@@ -2,7 +2,7 @@ require 'feature_spec_helper'
 
 feature 'A photo album', js: true do
   given!(:user) { create :real_user, password: 'abc' }
-  given!(:album) { double(:album, name: 'Inbox') }
+  given!(:album) { double(:album, name: 'Inbox', id: 'inbox') }
   given!(:photo) { create :real_photo, user: user }
 
   # FIXME: create an album to use for this feature and assign the photo to it
@@ -25,14 +25,12 @@ feature 'A photo album', js: true do
   end
 
   context "when not authenticated" do
-    before { pending "Without an album URL to visit directly, this is not testable" }
-
     scenario "is displayed after logging in" do
-      # visit Pages::Album.path_for(album.id)
-      # expect(Pages::Album.new).not_to be_present
-      # Pages::Authentication.authenticate(user.email, 'abc')
-      # visit Pages::Album.path_for(album.id)
-      # expect(Pages::Album.new).to be_present
+      visit Pages::Album.path_for(album.id)
+      expect(Pages::Album.new).not_to be_present
+      Pages::Authentication.authenticate(user.email, 'abc')
+      visit Pages::Album.path_for(album.id)
+      expect(Pages::Album.new).to be_present
     end
   end
 end

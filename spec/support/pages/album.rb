@@ -28,6 +28,10 @@ module Pages
       new
     end
 
+    def self.path_for(album_id)
+      "/#/albums/#{album_id}"
+    end
+
     private
 
     def photo_elements

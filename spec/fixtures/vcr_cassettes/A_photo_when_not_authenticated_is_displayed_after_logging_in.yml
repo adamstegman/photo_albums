@@ -58,4 +58,45 @@ http_interactions:
         </GetSessionTokenResponse>
     http_version: 
   recorded_at: Sun, 22 Jun 2014 02:48:24 GMT
+- request:
+    method: get
+    uri: https://adamstegman-photo-albums-test-44.s3.amazonaws.com/?versioning=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.41.0 ruby/2.0.0 x86_64-darwin13.0.0
+      Date:
+      - Tue, 22 Jul 2014 06:12:48 GMT
+      Authorization:
+      - AWS AKIAIO6H6TFEBAMTACVQ:KDWKDxSmsqiX/wkl+UuFXVp/PyM=
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - EHxUJ85/V5MKn9LHA7w/6Ile1UGWbSbPWzIIq3u1T7ds326YJ9UNOZaTvLds5uFU
+      X-Amz-Request-Id:
+      - D99C0D08E4478E24
+      Date:
+      - Tue, 22 Jul 2014 06:12:49 GMT
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <VersioningConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"/>
+    http_version: 
+  recorded_at: Tue, 22 Jul 2014 06:12:48 GMT
 recorded_with: VCR 2.9.2

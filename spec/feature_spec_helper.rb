@@ -20,7 +20,6 @@ end
 def create_blob_bucket(user: user, blob_bucket: user.blob_bucket)
   blobstore = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], region: ENV['AWS_REGION'])
   bucket = blobstore.buckets[blob_bucket]
-  # FIXME: record VCRs with the bucket existing
   unless bucket.exists?
     blobstore.buckets.create(blob_bucket)
     bucket = blobstore.buckets[blob_bucket]

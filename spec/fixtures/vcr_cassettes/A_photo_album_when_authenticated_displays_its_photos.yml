@@ -58,4 +58,103 @@ http_interactions:
         </GetSessionTokenResponse>
     http_version: 
   recorded_at: Sun, 22 Jun 2014 02:48:07 GMT
+- request:
+    method: get
+    uri: https://adamstegman-photo-albums-test-1.s3.amazonaws.com/?versioning=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.41.0 ruby/2.0.0 x86_64-darwin13.0.0
+      Date:
+      - Tue, 22 Jul 2014 06:13:08 GMT
+      Authorization:
+      - AWS AKIAIO6H6TFEBAMTACVQ:m90FVAza4yZwrqAakBYDdTIoVqw=
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - n/5gDNqrWkUqQWqE9Mno+Mjo1OgHpA8hSzYe1sCkYPsH02IKFbWoRNnmyZ2sx7Wo
+      X-Amz-Request-Id:
+      - 50BEBBBB3A60FECD
+      Date:
+      - Tue, 22 Jul 2014 06:13:10 GMT
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <VersioningConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"/>
+    http_version: 
+  recorded_at: Tue, 22 Jul 2014 06:13:09 GMT
+- request:
+    method: post
+    uri: https://sts.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetSessionToken&DurationSeconds=3600&Timestamp=2014-07-22T06%3A13%3A08Z&Version=2011-06-15
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '97'
+      User-Agent:
+      - aws-sdk-ruby/1.41.0 ruby/2.0.0 x86_64-darwin13.0.0
+      Host:
+      - sts.amazonaws.com
+      X-Amz-Date:
+      - 20140722T061308Z
+      X-Amz-Content-Sha256:
+      - ad3cbfad245b3e38fca40face2e6e34cf9408aaadf49aa84de8fb88d2bf60c26
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAJOELGXBARFGDN2PA/20140722/us-east-1/sts/aws4_request,
+        SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date,
+        Signature=934dd2208f5952b41ea30eba81f0781c09fea20eaca39875cf7ee47ad7e575ae
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 41015f53-1167-11e4-9473-d3328ba32934
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '868'
+      Date:
+      - Tue, 22 Jul 2014 06:13:09 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetSessionTokenResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+          <GetSessionTokenResult>
+            <Credentials>
+              <SessionToken>AQoDYXdzECca8AH7U9XGJw3v95CpQTWj5z7xlnv7ByzqakIWWHHEnFsjjSAjIa+GgJcaEZMCyKigSBxAF/6Zp/y2Yyhy54LxoJ3hJErvAMOOs6NGQoqnXle38Ri7rg6hBANmOOhRYmZQGv4WK4E2X4q3uo7t5zhx3KuQ7nafVqrAvsKzL35wAQSH5HA1iXfsRdIe9d6OqVRha2PZA7X0Av+Twsnoq6sVTyu92Ucz7sJEimqAGbpk+TUPRYUA1dVjOD/Wagzm5NcHXfozTCtLWp92BiZkh1DIe9FflF4bz8lzVyIgn4XEqFGBzyLQZGLHezT01OCQLdLdelIg9YG4ngU=</SessionToken>
+              <SecretAccessKey>4soMFHJ1c244s4RZIo/7PrzuW1lQwa2f9yr0ti87</SecretAccessKey>
+              <Expiration>2014-07-22T07:13:09Z</Expiration>
+              <AccessKeyId>ASIAJMJ5XAK43MD5RPMQ</AccessKeyId>
+            </Credentials>
+          </GetSessionTokenResult>
+          <ResponseMetadata>
+            <RequestId>41015f53-1167-11e4-9473-d3328ba32934</RequestId>
+          </ResponseMetadata>
+        </GetSessionTokenResponse>
+    http_version: 
+  recorded_at: Tue, 22 Jul 2014 06:13:10 GMT
 recorded_with: VCR 2.9.2
