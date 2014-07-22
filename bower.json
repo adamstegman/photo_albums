@@ -27,5 +27,8 @@
     "modernizr": "2.7.0",
     "momentjs": "2.5.0",
     "node-uuid": "1.4.1"
+  },
+  "devDependencies": {
+    "blob": "*"
   }
 }

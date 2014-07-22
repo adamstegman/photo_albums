@@ -11,6 +11,7 @@
 #   - dist/**/*.js
 #
 src_files:
+  - assets/blob/Blob.js
   - assets/modernizr/modernizr.js
   - assets/jquery.js
   - assets/handlebars.js
