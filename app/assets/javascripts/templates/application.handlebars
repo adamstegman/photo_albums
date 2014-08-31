@@ -17,7 +17,11 @@
       </section>
       <section class="right-small">
         {{#link-to "upload" class="upload"}}
-          <i class="fa fa-cloud-upload"></i>
+          {{#if isUploading}}
+            {{upload-activity-indicator}}
+          {{else}}
+            <i class="fa fa-cloud-upload"></i>
+          {{/if}}
           <span>Upload</span>
         {{/link-to}}
       </section>

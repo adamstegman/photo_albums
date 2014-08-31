@@ -40,6 +40,7 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
       };
       var s3 = session.get('s3');
       Ember.run(function() {
+        _this.send('startUploadActivityIndicator', photoAttributes.blobKey);
         s3.putObject(s3Params, _this.createPhotoFromAttributes(photoAttributes));
       });
     };
@@ -55,6 +56,7 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
         Ember.run(function() {
           var photo = _this.store.createRecord('photo', photoAttributes);
           photo.save();
+          _this.send('stopUploadActivityIndicator', photoAttributes.blobKey);
           _this.transitionTo('album', _this.modelFor('album'));
         });
       }

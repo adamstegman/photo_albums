@@ -29,6 +29,7 @@ module PhotoAlbums
       modernizr/modernizr.js
       aws-sdk/dist/aws-sdk.js
       node-uuid/uuid.js
+      spin.js/spin.js
     )
 
     config.autoload_paths += %W(#{config.root}/lib)
