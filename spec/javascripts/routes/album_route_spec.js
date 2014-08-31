@@ -1,11 +1,11 @@
-describe('PhotoAlbums.AlbumIndexRoute', function() {
+describe('PhotoAlbums.AlbumRoute', function() {
   beforeEach(function() {
     PhotoAlbums.reset();
   });
 
   var route;
   beforeEach(function() {
-    route = testHelper.lookup('route', 'album.index');
+    route = testHelper.lookup('route', 'album');
   });
 
   describe('#setupController', function() {
@@ -15,7 +15,7 @@ describe('PhotoAlbums.AlbumIndexRoute', function() {
 
     var controller;
     beforeEach(function() {
-      controller = testHelper.lookup('controller', 'album.index');
+      controller = testHelper.lookup('controller', 'album');
       controllerHelper.setModel(controller, 'album');
     });
 

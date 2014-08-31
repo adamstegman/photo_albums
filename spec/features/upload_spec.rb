@@ -2,9 +2,8 @@ require 'feature_spec_helper'
 
 feature 'Uploading photos', js: true do
   given!(:user) { create :real_user, password: 'abc' }
-  given!(:album) { double(:album, name: 'Inbox', id: 'inbox') }
 
-  subject(:upload_page) { Pages::Upload.open(album.name) }
+  subject(:upload_page) { Pages::Upload.open }
 
   context "when authenticated" do
     before do
@@ -36,10 +35,10 @@ feature 'Uploading photos', js: true do
 
   context "when not authenticated" do
     scenario "is displayed after logging in" do
-      visit Pages::Upload.path_for(album.id)
+      visit Pages::Upload.path
       expect(Pages::Upload.new).not_to be_present
       Pages::Authentication.authenticate(user.email, 'abc')
-      visit Pages::Upload.path_for(album.id)
+      visit Pages::Upload.path
       expect(Pages::Upload.new).to be_present
     end
   end

@@ -14,15 +14,14 @@ module Pages
       false
     end
 
-    def self.open(album_name)
+    def self.open
       visit '/'
-      Pages::Navigation.new.navigate_to album_name
       click_link 'Upload'
       new
     end
 
-    def self.path_for(album_id)
-      "/#/albums/#{album_id}/upload"
+    def self.path
+      "/#/upload"
     end
 
     private

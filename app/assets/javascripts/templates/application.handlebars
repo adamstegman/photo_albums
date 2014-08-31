@@ -7,7 +7,7 @@
       <section class="middle tab-bar-section">
         <h1>
           {{#if album}}
-            {{#link-to "album.index" album}}
+            {{#link-to "album" album}}
               {{partial "header"}}
             {{/link-to}}
           {{else}}
@@ -15,14 +15,12 @@
           {{/if}}
         </h1>
       </section>
-      {{#if album}}
-        <section class="right-small">
-          {{#link-to "album.upload" album class="upload"}}
-            <i class="fa fa-cloud-upload"></i>
-            <span>Upload</span>
-          {{/link-to}}
-        </section>
-      {{/if}}
+      <section class="right-small">
+        {{#link-to "upload" class="upload"}}
+          <i class="fa fa-cloud-upload"></i>
+          <span>Upload</span>
+        {{/link-to}}
+      </section>
     </nav>
     <aside class="left-off-canvas-menu">
       <nav class="main">
@@ -30,7 +28,7 @@
           <li><label>Albums</label></li>
           <li>
             <ol>
-              <li>{{#link-to "album.index" "inbox"}}Inbox{{/link-to}}</li>
+              <li>{{#link-to "album" "inbox"}}Inbox{{/link-to}}</li>
             </ol>
           </li>
         </ul>

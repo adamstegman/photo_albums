@@ -1,4 +1,4 @@
-describe('PhotoAlbums.AlbumUploadRoute', function() {
+describe('PhotoAlbums.UploadRoute', function() {
   beforeEach(function() {
     PhotoAlbums.reset();
   });
@@ -12,13 +12,12 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
 
   var route;
   beforeEach(function() {
-    route = testHelper.lookup('route', 'album.upload');
+    route = testHelper.lookup('route', 'upload');
   });
 
   var controller;
   beforeEach(function() {
-    controller = testHelper.lookup('controller', 'album.upload');
-    controllerHelper.setModel(controller, 'album');
+    controller = testHelper.lookup('controller', 'upload');
     route.setupController(controller, undefined);
   });
 
@@ -143,9 +142,6 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
       });
     });
 
-    xit("retries the photo upload if something goes wrong", function() {
-    });
-
     xit("retries the photo information upload if something goes wrong", function() {
     });
   });
@@ -157,9 +153,9 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
 
     describe('sets route properties:', function() {
       describe('title', function() {
-        it('is "Upload" with the album name', function() {
+        it('is "Upload"', function() {
           subject();
-          expect(route.get('title')).toBe("Upload - Inbox");
+          expect(route.get('title')).toBe("Upload");
         });
       });
     });
@@ -171,27 +167,31 @@ describe('PhotoAlbums.AlbumUploadRoute', function() {
       });
 
       describe('album', function() {
-        it("is the controller", function() {
+        it("is falsy", function() {
+          Ember.run(function() {
+            applicationController.set('album', 'something');
+          });
+
           subject();
-          expect(applicationController.get('album')).toBe(controller);
+          expect(applicationController.get('album')).toBeFalsy();
         });
       });
 
       describe('header', function() {
-        it("is falsy", function() {
-          Ember.run(function() {
-            applicationController.set('header', 'something');
-          });
-
+        it("is upload", function() {
           subject();
-          expect(applicationController.get('header')).toBeFalsy();
+          expect(applicationController.get('header')).toBe("Upload");
         });
       });
 
       describe('parentHeader', function() {
-        it("is the album name", function() {
+        it("is falsy", function() {
+          Ember.run(function() {
+            applicationController.set('parentHeader', 'something');
+          });
+
           subject();
-          expect(applicationController.get('parentHeader')).toBe("Inbox");
+          expect(applicationController.get('parentHeader')).toBeFalsy();
         });
       });
     });

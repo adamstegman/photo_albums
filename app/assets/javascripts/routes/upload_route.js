@@ -1,16 +1,16 @@
-PhotoAlbums.AlbumUploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
+PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
   setupController: function(controller, model) {
     this._super(controller, model);
-    this.setApplicationContext(controller);
-    this.set('title', "Upload - " + controller.get('name'));
+    this.setApplicationContext();
+    this.set('title', "Upload");
   },
 
-  setApplicationContext: function(controller) {
+  setApplicationContext: function() {
     var applicationController = this.controllerFor('application');
     Ember.run(function() {
-      applicationController.set('album', controller);
-      applicationController.set('header', undefined);
-      applicationController.set('parentHeader', controller.get('name'));
+      applicationController.set('album', undefined);
+      applicationController.set('header', "Upload");
+      applicationController.set('parentHeader', undefined);
     });
   },
 
@@ -55,7 +55,7 @@ PhotoAlbums.AlbumUploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authent
         Ember.run(function() {
           var photo = _this.store.createRecord('photo', photoAttributes);
           photo.save();
-          _this.transitionTo('album.index', _this.modelFor('album'));
+          _this.transitionTo('album', _this.modelFor('album'));
         });
       }
     };
