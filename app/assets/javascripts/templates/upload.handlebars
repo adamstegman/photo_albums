@@ -3,7 +3,10 @@
     <h2>Upload a photo from your computer</h2>
     <form {{action "upload" on="submit"}}>
       <p class="photo-selector">
-        {{view PhotoAlbums.PhotoFile id="photo"}}
+        <label class="photo-file">
+          <span>Select a photo&hellip;</span>
+          {{view PhotoAlbums.PhotoFile id="photo"}}
+        </label>
       </p>
     </form>
   </section>
