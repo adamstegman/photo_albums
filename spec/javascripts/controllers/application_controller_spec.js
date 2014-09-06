@@ -9,20 +9,24 @@ describe('PhotoAlbums.ApplicationController', function() {
 
   it("is uploading when uploads are in progress", function() {
     expect(controller.get('isUploading')).toBeFalsy();
+
     Ember.run(function() {
-      controller.startUploadActivityIndicator('a');
+      controller.startUpload('a');
     });
     expect(controller.get('isUploading')).toBeTruthy();
+
     Ember.run(function() {
-      controller.startUploadActivityIndicator('b');
+      controller.startUpload('b');
     });
     expect(controller.get('isUploading')).toBeTruthy();
+
     Ember.run(function() {
-      controller.stopUploadActivityIndicator('a');
+      controller.stopUpload('a');
     });
     expect(controller.get('isUploading')).toBeTruthy();
+
     Ember.run(function() {
-      controller.stopUploadActivityIndicator('b');
+      controller.stopUpload('b');
     });
     expect(controller.get('isUploading')).toBeFalsy();
   });

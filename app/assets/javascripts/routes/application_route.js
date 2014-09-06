@@ -3,18 +3,18 @@ PhotoAlbums.ApplicationRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Applica
   // controller.set('albums', PhotoAlbums.Album.FIXTURES);
 
   actions: {
-    startUploadActivityIndicator: function(id) {
-      this._startUploadActivityIndicator(id);
+    startUpload: function(id) {
+      this._startUpload(id);
     },
-    stopUploadActivityIndicator: function(id) {
-      this._stopUploadActivityIndicator(id);
+    stopUpload: function(id) {
+      this._stopUpload(id);
     }
   },
 
-  _startUploadActivityIndicator: function(id) {
-    this.get('controller').startUploadActivityIndicator(id);
+  _startUpload: function(id) {
+    this.get('controller').startUpload(id);
   },
-  _stopUploadActivityIndicator: function(id) {
-    this.get('controller').stopUploadActivityIndicator(id);
+  _stopUpload: function(id) {
+    this.get('controller').stopUpload(id);
   }
 });

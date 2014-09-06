@@ -11,20 +11,10 @@ feature 'Uploading photos', js: true do
     end
 
     scenario 'creates a photo in the album' do
-      upload_page.upload(fixture_file_path('IMG_2598.jpg'))
+      upload_page.start_upload(fixture_file_path('IMG_2598.jpg'))
+      upload_page.wait_for_upload('IMG_2598.jpg')
 
-      # wait for redirect to album page
-      album_page = Pages::Album.new
-      Timeout.timeout(10) do
-        sleep 0.1 until album_page.present?
-      end
-
-      # DB state is not ready until we wait for a split-second. Refresh is necessary to pick up the new photo.
-      Timeout.timeout(1) do
-        sleep 0.1 until Photo.for_user(user).count > 0
-      end
-      visit current_path
-
+      album_page = Pages::Album.open('Inbox')
       expect(album_page.photos.size).to eq(1)
     end
 

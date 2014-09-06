@@ -1,6 +1,6 @@
 PhotoAlbums.ApplicationController = Ember.Controller.extend({
   isUploading: Ember.computed.notEmpty('uploadActivityIndicators.[]'),
-  startUploadActivityIndicator: function(id) {
+  startUpload: function(id) {
     var uploads = this.get('uploadActivityIndicators');
     if (uploads) {
       uploads.pushObject(id);
@@ -11,7 +11,7 @@ PhotoAlbums.ApplicationController = Ember.Controller.extend({
       });
     }
   },
-  stopUploadActivityIndicator: function(id) {
+  stopUpload: function(id) {
     var uploads = this.get('uploadActivityIndicators');
     if (uploads) {
       uploads.removeObject(id);

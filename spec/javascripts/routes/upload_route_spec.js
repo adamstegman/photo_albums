@@ -160,6 +160,24 @@ describe('PhotoAlbums.UploadRoute', function() {
       });
     });
 
+    describe("sets controller properties:", function() {
+      describe('model', function() {
+        it("is the ongoing uploads when there are ongoing uploads", function() {
+          testHelper.lookup('controller', 'application').set('uploads', [{filename: "some-file"}]);
+
+          subject();
+          expect(controller.get('model')).toEqual([{filename: "some-file"}]);
+        });
+
+        it("is an empty array when there have not been any uploads", function() {
+          testHelper.lookup('controller', 'application').set('uploads', undefined);
+
+          subject();
+          expect(controller.get('model')).toEqual([]);
+        });
+      });
+    });
+
     describe("sets ApplicationController properties:", function() {
       var applicationController;
       beforeEach(function() {

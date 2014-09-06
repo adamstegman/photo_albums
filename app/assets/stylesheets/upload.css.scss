@@ -1,0 +1,43 @@
+@import "foundation/scss/foundation/components/buttons";
+
+.photo-upload {
+  margin: 1rem 0 0 1rem;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+input#photo {
+  margin: 1rem 0 0 0;
+  outline: none;
+  width: auto;
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  &::before {
+    content: "Select a photo";
+    @include button;
+    margin-bottom: 0;
+  }
+}
+
+.upload-ongoing-items {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+.upload-ongoing-item {
+  display: flex;
+
+  .upload-activity-indicator {
+    position: relative;
+    width: 1.5em;
+    margin-right: 0.5em;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}

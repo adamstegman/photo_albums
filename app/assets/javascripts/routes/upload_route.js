@@ -1,6 +1,11 @@
 PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
-  setupController: function(controller, model) {
-    this._super(controller, model);
+  setupController: function(controller) {
+    var uploads = this.controllerFor('application').get('uploads');
+    if (!uploads) {
+      uploads = Ember.A([]);
+    }
+    controller.set('model', uploads);
+
     this.setApplicationContext();
     this.set('title', "Upload");
   },
@@ -17,6 +22,34 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
   actions: {
     upload: function(photoData, photoAttributes) {
       this._upload(photoData, photoAttributes);
+    },
+    startUpload: function(id, photoAttributes) {
+      this._startUpload(id, photoAttributes);
+      return true;
+    },
+    stopUpload: function(id, photoAttributes) {
+      this._stopUpload(id, photoAttributes);
+      return true;
+    }
+  },
+
+  _startUpload: function(id, photoAttributes) {
+    var controller = this.get('controller');
+    var uploads = controller.get('uploads');
+    if (!uploads) {
+      uploads = Ember.A([]);
+      Ember.run(function() {
+        controller.set('uploads', uploads);
+      });
+    }
+    uploads.pushObject(photoAttributes);
+  },
+
+  _stopUpload: function(id, photoAttributes) {
+    var controller = this.get('controller');
+    var uploads = controller.get('uploads');
+    if (uploads) {
+      uploads.removeObject(photoAttributes);
     }
   },
 
@@ -40,7 +73,7 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
       };
       var s3 = session.get('s3');
       Ember.run(function() {
-        _this.send('startUploadActivityIndicator', photoAttributes.blobKey);
+        _this.send('startUpload', photoAttributes.blobKey, photoAttributes);
         s3.putObject(s3Params, _this.createPhotoFromAttributes(photoAttributes));
       });
     };
@@ -56,8 +89,7 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
         Ember.run(function() {
           var photo = _this.store.createRecord('photo', photoAttributes);
           photo.save();
-          _this.send('stopUploadActivityIndicator', photoAttributes.blobKey);
-          _this.transitionTo('album', _this.modelFor('album'));
+          _this.send('stopUpload', photoAttributes.blobKey, photoAttributes);
         });
       }
     };

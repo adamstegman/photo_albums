@@ -1,10 +1,24 @@
-<article class="upload">
-  <form {{action "upload" on="submit"}}>
-    <p>
-      <label>
-        Photo:
+<article class="photo-upload">
+  <section class="upload-select">
+    <h2>Upload a photo from your computer</h2>
+    <form {{action "upload" on="submit"}}>
+      <p class="photo-selector">
         {{view PhotoAlbums.PhotoFile id="photo"}}
-      </label>
-    </p>
-  </form>
+      </p>
+    </form>
+  </section>
+
+  {{#if hasUploads}}
+    <section class="upload-ongoing">
+      <h2>Ongoing uploads</h2>
+      <ul class="upload-ongoing-items">
+        {{#each uploads}}
+          <li class="upload-ongoing-item">
+            {{upload-activity-indicator style="page"}}
+            <p>{{filename}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
 </article>
