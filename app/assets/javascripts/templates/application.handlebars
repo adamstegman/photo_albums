@@ -43,6 +43,13 @@
       {{outlet}}
     </div>
 
+    {{#if uploadError}}
+      <div data-alert class="upload-error">
+        We could not upload {{uploadError.filename}}. It might work if you try again.
+        <a href="#" class="close">&times;</a>
+      </div>
+    {{/if}}
+
     <a class="exit-off-canvas"></a>
   </div>
 </div>

@@ -8,6 +8,10 @@ PhotoAlbums.ApplicationRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Applica
     },
     stopUpload: function(id) {
       this._stopUpload(id);
+    },
+
+    uploadError: function(err) {
+      this._uploadError(err);
     }
   },
 
@@ -16,5 +20,13 @@ PhotoAlbums.ApplicationRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Applica
   },
   _stopUpload: function(id) {
     this.get('controller').stopUpload(id);
+  },
+
+  _uploadError: function(photoAttributes, err) {
+    if (!photoAttributes) {
+      photoAttributes = {};
+    }
+    photoAttributes.err = err;
+    this.get('controller').set('uploadError', photoAttributes);
   }
 });

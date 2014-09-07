@@ -18,7 +18,7 @@ describe('PhotoAlbums.UploadRoute', function() {
   var controller;
   beforeEach(function() {
     controller = testHelper.lookup('controller', 'upload');
-    route.setupController(controller, undefined);
+    route.setupController(controller);
   });
 
   describe('getSession', function() {
@@ -119,7 +119,7 @@ describe('PhotoAlbums.UploadRoute', function() {
 
     it("uploads the photo information to the server", function() {
       subject();
-      callback(null);
+      callback();
 
       var photoInfoUpload = jasmine.Ajax.requests.mostRecent();
       expect(photoInfoUpload.method).toBe('POST');
@@ -140,6 +140,13 @@ describe('PhotoAlbums.UploadRoute', function() {
           taken_at: null
         }
       });
+    });
+
+    it("does not upload the photo information if the photo upload fails", function() {
+      subject();
+      err = new Error();
+      callback(err);
+      expect(jasmine.Ajax.requests.mostRecent()).toBeFalsy();
     });
 
     xit("retries the photo information upload if something goes wrong", function() {

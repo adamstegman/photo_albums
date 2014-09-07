@@ -1,3 +1,4 @@
+@import "foundation/scss/foundation/components/alert-boxes";
 @import "foundation/scss/foundation/components/buttons";
 
 .photo-upload {
@@ -46,5 +47,19 @@
 
   p {
     margin-bottom: 0;
+  }
+}
+
+.upload-error {
+  @include alert($bg: $alert-color, $radius: true);
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+
+  .close {
+    @include alert-close;
   }
 }

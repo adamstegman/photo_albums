@@ -83,8 +83,8 @@ PhotoAlbums.UploadRoute = PhotoAlbums.Route.extend(Ember.SimpleAuth.Authenticate
     var _this = this;
     return function(err, data) {
       if (err) {
-        // FIXME: handle error cases
-        console.error(err);
+        _this.send('stopUpload', photoAttributes.blobKey, photoAttributes);
+        _this.send('uploadError', photoAttributes, err);
       } else {
         Ember.run(function() {
           var photo = _this.store.createRecord('photo', photoAttributes);
