@@ -35,7 +35,7 @@ The purpose of the separate access keys is to separate uploading and downloading
 
 ## Deployment
 
-Deployed on [Heroku]() using the [multi-buildpack]() according to [these instructions]().
+Deployed on [Heroku][] using the [multi-buildpack][] according to [these instructions][].
 
 You'll need to create the following environment variables:
 
