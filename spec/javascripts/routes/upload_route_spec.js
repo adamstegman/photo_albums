@@ -115,6 +115,7 @@ describe('PhotoAlbums.UploadRoute', function() {
       expect(params.Body).toBe("some-data");
       expect(params.ContentType).toBe("some/type");
       expect(typeof callback).toBe("function");
+      callback();
     });
 
     it("uploads the photo information to the server", function() {
@@ -146,10 +147,15 @@ describe('PhotoAlbums.UploadRoute', function() {
       subject();
       err = new Error();
       callback(err);
-      expect(jasmine.Ajax.requests.mostRecent()).toBeFalsy();
+      expect(jasmine.Ajax.requests.count()).toBe(0);
     });
 
-    xit("retries the photo information upload if something goes wrong", function() {
+    // FIXME: global queue (Ember.run would work) where each request simply retries itself
+    it("retries the photo information upload", function() {
+      jasmine.Ajax.stubRequest('/photos').andReturn({status: 500});
+      subject();
+      callback();
+      expect(jasmine.Ajax.requests.count()).toBeGreaterThan(1);
     });
   });
 

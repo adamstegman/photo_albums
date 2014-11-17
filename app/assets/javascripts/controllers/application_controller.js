@@ -16,5 +16,6 @@ PhotoAlbums.ApplicationController = Ember.Controller.extend({
     if (uploads) {
       uploads.removeObject(id);
     }
-  }
+  },
+  uploadError: {filename: "some-file", err: new Error("some-error")}
 });
