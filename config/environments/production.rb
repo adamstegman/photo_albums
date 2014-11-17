@@ -18,13 +18,21 @@ PhotoAlbums::Application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
-  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
-                            :value_max_bytes => 10485760)
-  config.action_dispatch.rack_cache = {
-    :metastore    => client,
-    :entitystore  => client
-  }
-  config.static_cache_control = "public, max-age=2592000"
+  server = nil
+  if ENV["VCAP_SERVICES"]
+    services = JSON.parse(ENV["VCAP_SERVICES"])
+    server = services.fetch("memcachedcloud", [{}])[0].fetch("credentials", {})["servers"]
+  elsif ENV["MEMCACHIER_SERVERS"]
+    server = ENV["MEMCACHIER_SERVERS"]
+  end
+  if server
+    client = Dalli::Client.new(server, value_max_bytes: 10485760)
+    config.action_dispatch.rack_cache = {
+      :metastore    => client,
+      :entitystore  => client
+    }
+    config.static_cache_control = "public, max-age=2592000"
+  end
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
