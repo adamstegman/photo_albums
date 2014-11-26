@@ -44,5 +44,5 @@ You'll need to create the following environment variables:
 * `AWS_SECRET_ACCESS_KEY`
 
 [Heroku]: http://heroku.com
-[multi-buildpack]: https://github.com/ddollar/heroku-buildpack-multi
+[multi-buildpack]: https://github.com/heroku/heroku-buildpack-multi
 [these instructions]: https://coderwall.com/p/6bmygq
