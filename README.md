@@ -33,6 +33,12 @@ If you want to do live feature tests using an AWS account, set up the same envir
 
 The purpose of the separate access keys is to separate uploading and downloading permissions.
 
+### Missing pieces
+
+You must provide some pieces yourself:
+
+* privacy policy - `app/views/static_pages/privacy.html`
+
 ## Deployment
 
 Deployed on [Heroku][] using the [multi-buildpack][] according to [these instructions][].

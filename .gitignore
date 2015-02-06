@@ -21,6 +21,7 @@
 
 /.env
 /.rspec
+/app/views/static_pages/privacy.html
 /public/assets
 /public/IMG_2598.jpg
 /public/flag.png

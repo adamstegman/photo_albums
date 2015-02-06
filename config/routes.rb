@@ -11,5 +11,7 @@ PhotoAlbums::Application.routes.draw do
     end
   end
 
+  get 'privacy' => 'static_pages#privacy'
+
   root :to => 'assets#index'
 end
