@@ -15,6 +15,6 @@ variable :WEB_CONCURRENCY, :integer, default: 3
 end
 
 group :production do
-  variable :VCAP_SERVICES, :string, default: nil
-  variable :MEMCACHIER_SERVERS, :string, default: nil
+  variable :VCAP_SERVICES, :string, default: ''
+  variable :MEMCACHIER_SERVERS, :string, default: ''
 end
