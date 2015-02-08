@@ -1,3 +1,6 @@
+require 'envied'
+ENVied.require
+
 worker_processes ENVied.WEB_CONCURRENCY
 timeout 15
 preload_app true
