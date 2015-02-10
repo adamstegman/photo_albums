@@ -9,15 +9,15 @@ require 'capybara/rspec'
 Dir[File.expand_path('../support/pages/*.rb', __FILE__)].each { |f| require f }
 
 def live?
-  ENVied.LIVE_FEATURE_SPECS
+  !!ENV['LIVE_FEATURE_SPECS']
 end
 
 def upload_photo(photo)
   if live?
     # FIXME: replace with real bucket-creation code like a user
-    # AWS::S3.new(region: ENVied.AWS_REGION).buckets.create(photo.blob_bucket) unless bucket.exists?
+    # AWS::S3.new(region: ENV['AWS_REGION']).buckets.create(photo.blob_bucket) unless bucket.exists?
 
-    blobstore = AWS::S3.new(access_key_id: ENVied.TEST_ACCESS_KEY_ID, secret_access_key: ENVied.TEST_SECRET_ACCESS_KEY, region: ENVied.AWS_REGION)
+    blobstore = AWS::S3.new(access_key_id: ENV['TEST_ACCESS_KEY_ID'], secret_access_key: ENV['TEST_SECRET_ACCESS_KEY'], region: ENV['AWS_REGION'])
     object = blobstore.buckets[photo.blob_bucket].objects[photo.blob_key]
     object.write(file: File.expand_path("../fixtures/#{photo.filename}", __FILE__)) unless object.exists?
   end

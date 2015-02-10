@@ -19,10 +19,10 @@ PhotoAlbums::Application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
   server = nil
-  if !ENV["VCAP_SERVICES"].empty?
+  if ENV["VCAP_SERVICES"]
     services = JSON.parse(ENV["VCAP_SERVICES"])
     server = services.fetch("memcachedcloud", [{}])[0].fetch("credentials", {})["servers"]
-  elsif !ENV["MEMCACHIER_SERVERS"].empty?
+  elsif ENV["MEMCACHIER_SERVERS"]
     server = ENV["MEMCACHIER_SERVERS"]
   end
   if server
