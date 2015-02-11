@@ -17,7 +17,8 @@ npm install -g bower
 bower install
 ```
 
-Then run `foreman start -f Procfile.dev` to launch the server at [http://localhost:3000/](http://localhost:3000/).
+Create a self-signed certificate for local SSL and put the `.key` and `.crt` in the `config/` folder.
+Then run `foreman start -f Procfile.dev` to launch the server at [https://localhost:3000/](https://localhost:3000/).
 
 Run all the tests with `bundle exec rake`.
 Run individual Ruby tests with `bundle exec rspec spec/...`.
