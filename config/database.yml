@@ -2,20 +2,20 @@ development:
   adapter: postgresql
   encoding: unicode
   database: photo_albums_development
-  pool: 5
+  pool: 15
   username: photo_albums
 
 test:
   adapter: postgresql
   encoding: unicode
   database: photo_albums_test
-  pool: 5
+  pool: 15
   username: postgres
 
 production:
   adapter: postgresql
   encoding: unicode
   database: photo_albums_production
-  pool: 5
+  pool: 15
   username: photo_albums
   password:

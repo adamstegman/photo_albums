@@ -16,9 +16,9 @@ gem 'kgio'
 gem 'memcachier'
 gem 'pg'
 gem 'rack-cache'
+gem 'rack-timeout'
 gem 'rmagick'
 gem 'sass-rails'
-gem 'thin'
 gem 'uglifier'
 gem 'unf'
 
@@ -50,5 +50,5 @@ end
 group :production do
   gem 'dalli'
   gem 'rails_12factor'
-  gem 'unicorn'
+  gem 'puma'
 end
